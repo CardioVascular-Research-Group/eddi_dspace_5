@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<!--
+  - dublin-core-types.xml
+  -
+  - Version:  $Revision$
+  -
+  - Date:     $Date$
+  -
+  - Initial contents for Dublin Core type registry.  Once the registry has
+  - been loaded, this file becomes obsolete; the current version of the
+  - registry must be read from the database.
+  - Use org.dspace.content.MetadataSchema, org.dspace.content.MetadataField, org.dspace.content.MetadataValue instead.
+  - Omit <qualifier> tags for unqualified elements
+  - 
+  - <dc-type>
+  -   <schema></schema>
+  -   <element></element>
+  -   <qualifier></qualifier>
+  -   <scope_note></scope_note>
+  - </dc-type>
+  -->
+
+<!-- start of XML -->
+
+<dspace-dc-types>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>description</qualifier>
+    <scope_note>The description of the item being added to the collection</scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>accessurl</qualifier>
+    <scope_note>The hyperlink to the original information the item references</scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>accessrestrictions</qualifier>
+    <scope_note>The level of access required to see the underlying data</scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>datatype</qualifier>
+    <scope_note>The purpose of the underlying data (e.g., Retrospective, Representational, etc.)</scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>dataformat</qualifier>
+    <scope_note>The file format(s) used for the underlying data</scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>pubmedsearch</qualifier>
+    <scope_note>Reference to research that has already used the underlying data</scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>dataaccessurl</qualifier>
+    <scope_note>Hyperlinks to individual/groups of data</scope_note>
+  </dc-type> 
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>piname</qualifier>
+    <scope_note>Name of Principal Investigator for research and primary contact</scope_note>
+  </dc-type>  
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>piemail</qualifier>
+    <scope_note>Email of Principal Investigator for research</scope_note>
+  </dc-type>  
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>piaffiliation</qualifier>
+    <scope_note>University, Organization, and/or department P.I. is affiliated with</scope_note>
+  </dc-type>  
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>granttitle</qualifier>
+    <scope_note>Title of grant supporting research (if applicable)</scope_note>
+  </dc-type>  
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>grantnumber</qualifier>
+    <scope_note>Number of grant supporting research (if applicable)</scope_note>
+  </dc-type> 
+   
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>datasets</qualifier>
+    <scope_note>Data Discovery Index URI for any datasets utilized by this publication</scope_note>
+  </dc-type>  
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>identifier</element>
+    <qualifier>pmid</qualifier>
+    <scope_note>PubMed reference identifier</scope_note>
+  </dc-type>
+  <dc-type>
+	<schema>dc</schema>
+    <element>identifier</element>
+    <qualifier>doi</qualifier>
+    <scope_note>DOI reference identifier</scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>source</element>
+    <qualifier>volume</qualifier>
+    <scope_note>Volume number for journal.</scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>source</element>
+    <qualifier>issue</qualifier>
+    <scope_note>Issue number for journal.</scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>globusendpointname</qualifier>
+    <scope_note>Globus Shared Endpoint Name.</scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>globusendpointpath</qualifier>
+    <scope_note>Globus Shared Endpoint Path.</scope_note>
+  </dc-type>
+
+</dspace-dc-types>
