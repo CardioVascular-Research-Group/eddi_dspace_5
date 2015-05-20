@@ -44,7 +44,6 @@
 	EPerson user = (EPerson) request.getAttribute("dspace.current.user");
     Community[] communities = (Community[]) request.getAttribute("communities");
 
-    Locale[] supportedLocales = I18nUtil.getSupportedLocales();
     Locale sessionLocale = UIUtil.getSessionLocale(request);
     Config.set(request.getSession(), Config.FMT_LOCALE, sessionLocale);
     String topNews = NewsManager.readNewsFile(LocaleSupport.getLocalizedMessage(pageContext, "news-top.html"));
@@ -64,25 +63,6 @@
 
 <dspace:layout locbar="nolink" titlekey="jsp.home.title" feedData="<%= feedData %>">
 
-<% if (supportedLocales != null && supportedLocales.length > 1)
-{
-%>
-        <form method="get" name="repost" action="">
-          <input type ="hidden" name ="locale"/>
-        </form>
-<%
-for (int i = supportedLocales.length-1; i >= 0; i--)
-{
-%>
-        <a class ="langChangeOn"
-                  onclick="javascript:document.repost.locale.value='<%=supportedLocales[i].toString()%>';
-                  document.repost.submit();">
-                 <%= supportedLocales[i].getDisplayLanguage(supportedLocales[i])%>
-        </a> &nbsp;
-<%
-}
-}
-%>
 
 
 <div class="jumbotron">
@@ -129,10 +109,6 @@ for (int i = supportedLocales.length-1; i >= 0; i--)
 
 
 <div class="row">
-<%
-if (submissions != null && submissions.count() > 0)
-{
-%>
         <div class="col-md-12">
         
         
@@ -181,9 +157,6 @@ if (communities != null && communities.length != 0)
 %>
 	</div>
 	</div>
-<%
-}
-%>
      
      
      
@@ -217,7 +190,7 @@ if (communities != null && communities.length != 0)
 	    	       width = 36;
 	    	    }
 	%>
-	    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/site"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" vspace="3" border="0" /></a>
+	    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/site"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" style="margin: 3px 0 3px" /></a>
 	<%
 	    	}
 	    }
@@ -234,13 +207,13 @@ if (communities != null && communities.length != 0)
 		        String displayTitle = "Untitled";
 		        if (dcv != null & dcv.length > 0)
 		        {
-		            displayTitle = dcv[0].value;
+		            displayTitle = Utils.addEntities(dcv[0].value);
 		        }
 		        dcv = item.getMetadata("dc", "description", "abstract", Item.ANY);
 		        String displayAbstract = "";
 		        if (dcv != null & dcv.length > 0)
 		        {
-		            displayAbstract = dcv[0].value;
+		            displayAbstract = Utils.addEntities(dcv[0].value);
 		        }
 		%>
 		    <div style="padding-bottom: 50px; min-height: 110px;" class="item <%= first?"active":""%>">
@@ -262,7 +235,7 @@ if (communities != null && communities.length != 0)
 		    <span class="icon-prev"></span>
 		  </a>
 		  <a class="right carousel-control" href="#recent-submissions-carousel" data-slide="next">
-		    <span class="icon-next" ></span>
+		    <span class="icon-next"></span>
 		  </a>
 
           <ol class="carousel-indicators" style="bottom:5px;">
@@ -276,29 +249,20 @@ if (communities != null && communities.length != 0)
 <%
 }
 %>
+
 <%-- <div class="col-md-4">
     <%= sideNews %>
 </div> --%>
 	
-	
-	
-	
-	<div class="container row">
+		<div class="container row">
 
-	<%
-    	int discovery_panel_cols = 12;
-    	int discovery_facet_cols = 12;
-    %>
-	<%@ include file="discovery/static-sidebar-facet.jsp" %>
+		<%
+	    	int discovery_panel_cols = 12;
+	    	int discovery_facet_cols = 12;
+	    %>
+		<%@ include file="discovery/static-sidebar-facet.jsp" %>	
 	
-	
-</div>	
-	
-	
-	
-	
-     </div>
-	
-	
+		</div>
+	</div>
 </div>
 </dspace:layout>
