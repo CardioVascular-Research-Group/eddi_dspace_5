@@ -190,7 +190,7 @@
     <dspace:item-preview item="<%= item %>" />
     <dspace:item item="<%= item %>" collections="<%= collections %>" style="<%= displayStyle %>" />
 
-<div class="panel panel-info ifShow" style="display: none;"><div class="panel-body"><a href="<%= request.getContextPath() %>/simple-search?filterquery=%2Fhandle%2F<%= handle %>&filtername=refDatasets&filtertype=equals">Click here to view publications associated with this database.</a></div></div>
+<div class="panel panel-info ifShow" style="display: none;"><div class="panel-body"><a href="<%= request.getContextPath() %>/simple-search?filterquery=<%= handle %>&filtername=refDatasets&filtertype=equals">Click here to view publications associated with this database.</a></div></div>
 
     <div class="container row">
 <%
