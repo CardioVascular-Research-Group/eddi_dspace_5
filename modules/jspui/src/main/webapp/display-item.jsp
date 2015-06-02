@@ -356,7 +356,7 @@
             return text.replace('#', '%23');
         });
 
-		if( j('.metadataFieldValue a:contains(ECG Dataset)').length ){
+		if( j('.metadataFieldValue a:contains(ECG Dataset)').length || j('.metadataFieldValue a:contains(EP Dataset)').length ){
 		      
 		      j('.ifShow').show();
 		    }
