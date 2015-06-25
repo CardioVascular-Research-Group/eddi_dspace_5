@@ -137,7 +137,7 @@
                 <%-- <strong>Please use this identifier to cite or link to this item:
                 <code><%= HandleManager.getCanonicalForm(handle) %></code></strong>--%>
                 <div class="well"><fmt:message key="jsp.display-item.identifier"/>
-                <code><%= HandleManager.getCanonicalForm(handle) %></code></div>
+                <code><%= HandleManager.getCanonicalForm(handle) %></code><p>handle equals <%= handle %></p></div>
 <%
         if (admin_button)  // admin edit button
         { %>
