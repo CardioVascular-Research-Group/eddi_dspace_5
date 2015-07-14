@@ -375,6 +375,17 @@ it, please enter the types and the actual numbers or codes below.</hint>
        </field>
        
        <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>ecg</dc-element>
+         <dc-qualifier>citationpub</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data Use Citation</label>
+         <input-type>onebox</input-type>
+         <hint>Please add a persistent url for the publication you would like cited when this dataset is used in research.</hint>
+         <required></required>
+       </field>
+       
+       <field>
 		    <dc-schema>dc</dc-schema>
 		    <dc-element>ecg</dc-element>
 		    <dc-qualifier>accessurl</dc-qualifier>
@@ -545,6 +556,17 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <label>Grant Number</label>
          <input-type>onebox</input-type>
          <hint>Number of grant(s) supporting research (if applicable)</hint>
+         <required></required>
+       </field>
+       
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>ecg</dc-element>
+         <dc-qualifier>citationpub</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data Use Citation</label>
+         <input-type>onebox</input-type>
+         <hint>Please add a persistent url for the publication you would like cited when this dataset is used in research.</hint>
          <required></required>
        </field>
        

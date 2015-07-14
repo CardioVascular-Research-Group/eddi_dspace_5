@@ -108,6 +108,13 @@
     <qualifier>grantnumber</qualifier>
     <scope_note>Number of grant supporting research (if applicable)</scope_note>
   </dc-type> 
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>ecg</element>
+    <qualifier>citationpub</qualifier>
+    <scope_note>Url for publication to cite when using this dataset</scope_note>
+  </dc-type> 
    
   <dc-type>
     <schema>dc</schema>
