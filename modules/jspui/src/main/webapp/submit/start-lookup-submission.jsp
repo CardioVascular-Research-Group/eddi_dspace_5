@@ -316,7 +316,7 @@
 			<input type="hidden" id="suuid" name="suuid" value="<%= uuid %>"/>
 			<input type="hidden" id="collectionid" name="collectionid" value=""/>
 			<div class="btn-group">
-				<button class="btn btn-success col-md-offset-5" id="manual-submission-button" type="button"><fmt:message key="jsp.submit.start-lookup-submission.button.manual-submission"/> </button>
+				<button class="btn btn-info col-md-offset-5" id="manual-submission-button" type="button"><fmt:message key="jsp.submit.start-lookup-submission.button.manual-submission"/> </button>
 			</div>
 			</form>
 		</div>	
