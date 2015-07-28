@@ -220,7 +220,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <repeatable>true</repeatable>
          <label>Datasets</label>
          <input-type value-pairs-name="dataset_defaults">dropdown</input-type>
-         <hint>List the Data Discovery Index URI for any datasets utilized by this publication in the box below. </hint>
+         <hint>Choose the Data Discovery Index datasets utilized by this publication in the box below. (CTRL-Click to select multiple datasets)</hint>
          <required></required>
        </field>
 
