@@ -690,108 +690,12 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
    <value-pairs value-pairs-name="dataset_defaults" dc-term="type">
      <pair>
-       <displayed-value>High Spatial Resolution Mouse Heart Data Sets</displayed-value>
-       <stored-value>11614/1659</stored-value>
+       <displayed-value>ECG Datasets</displayed-value>
+       <stored-value>123456789/2</stored-value>
      </pair>
      <pair>
-       <displayed-value>Physionet ANSI/AAMI EC13 Test Waveforms</displayed-value>
-       <stored-value>11614/647</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet European ST-T Database</displayed-value>
-       <stored-value>11614/649</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet Long-Term ST Database</displayed-value>
-       <stored-value>11614/690</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet MIMIC Database</displayed-value>
-       <stored-value>11614/1497</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet MIMIC II Database</displayed-value>
-       <stored-value>11614/1458</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet MGH/MF Multi-Parameter Waveform Database</displayed-value>
-       <stored-value>11614/734</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>MIT-BIH Arrhythmia Database</displayed-value>
-       <stored-value>11614/646</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet MIT-BIH Noise Stress Test Database</displayed-value>
-       <stored-value>11614/731</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Physionet PTB Diagnostic ECG Database</displayed-value>
-       <stored-value>11614/1551</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Acute Myocardial Infarction ECG Data</displayed-value>
-       <stored-value>11614/727</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): AF and cardioversion ECG Data</displayed-value>
-       <stored-value>11614/719</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Chest Pain (IMMEDIATE HR ECG) ECG Data</displayed-value>
-       <stored-value>11614/723</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Chest Pain (IMMEDIATE LR ECG) ECG Data</displayed-value>
-       <stored-value>11614/720</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Coronary Artery Patients</displayed-value>
-       <stored-value>11614/712</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Definite Study</displayed-value>
-       <stored-value>11614/1642</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): ESRD patients during and after hemodialysis ECG Data</displayed-value>
-       <stored-value>11614/725</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Exercise testing and perfusion imaging ECG Data</displayed-value>
-       <stored-value>11614/724</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): FDA1-quinidine, verapamil, ranolazine, dofetilide trial</displayed-value>
-       <stored-value>11614/1641</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Genotyped Long QT syndrome ECG Data</displayed-value>
-       <stored-value>11614/722</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Occluded Artery Trial</displayed-value>
-       <stored-value>11614/1643</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Sotalol IV and History of TdPs ECG Data</displayed-value>
-       <stored-value>11614/718</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Telemetric and Holter ECG Warehouse</displayed-value>
-       <stored-value>11614/1644</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Thorough QT Study #1 ECG Data</displayed-value>
-       <stored-value>11614/714</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Thorough QT Study #2 ECG Data</displayed-value>
-       <stored-value>11614/715</stored-value>
-     </pair>
-     <pair>
-       <displayed-value>Telemetric and Holter ECG Warehouse (THEW): Torsades de Pointes (TdPs) ECG Data</displayed-value>
-       <stored-value>11614/717</stored-value>
+       <displayed-value>ECG Publications</displayed-value>
+       <stored-value>123456789/3</stored-value>
      </pair>
    </value-pairs>
 

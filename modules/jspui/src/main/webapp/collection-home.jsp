@@ -38,10 +38,10 @@
 <%@ page import="org.dspace.content.*"%>
 <%@ page import="org.dspace.core.ConfigurationManager"%>
 <%@ page import="org.dspace.core.Context" %>
+<%@ page import="org.dspace.core.Utils" %>
 <%@ page import="org.dspace.eperson.Group"     %>
 <%@ page import="javax.servlet.jsp.jstl.fmt.LocaleSupport" %>
 <%@ page import="java.net.URLEncoder" %>
-
 
 <%
     // Retrieve attributes
@@ -195,13 +195,17 @@
     	       width = 36;
     	    }
 %>
-    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/<%= collection.getHandle() %>"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" vspace="3" border="0" /></a>
+    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/<%= collection.getHandle() %>"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" style="margin: 3px 0 3px" /></a>
 <%
     	} %>
     	</span><%
     }
 %>
         </form>
+
+<div class="row">
+	<%@ include file="discovery/static-tagcloud-facet.jsp" %>
+</div>
 
 <% if (show_items)
    {
@@ -374,7 +378,7 @@
 			{
 				if (dcv.length > 0)
 				{
-					displayTitle = dcv[0].value;
+					displayTitle = Utils.addEntities(dcv[0].value);
 				}
 			}
 			%><p class="recentItem"><a href="<%= request.getContextPath() %>/handle/<%= items[i].getHandle() %>"><%= displayTitle %></a></p><%

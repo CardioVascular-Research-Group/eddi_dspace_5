@@ -44,7 +44,7 @@
     //get community handle
     int communityId = (Integer) request.getAttribute("collectionID");
     
-    //get collection handle if available? will probably blow up.
+    //eddi addition: get collection handle if available? will probably blow up. 
     String communitySet = "0";
     if (request.getParameter("collection") != null){
         communitySet = request.getParameter("collection");

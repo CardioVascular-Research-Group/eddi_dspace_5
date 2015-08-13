@@ -42,15 +42,19 @@
 <%@ page import="org.dspace.app.webui.util.UIUtil" %>
 <%@ page import="org.dspace.browse.BrowseIndex" %>
 <%@ page import="org.dspace.browse.BrowseInfo" %>
+<%@ page import="org.dspace.content.Collection" %>
+<%@ page import="org.dspace.content.DSpaceObject" %>
 <%@ page import="org.dspace.content.DCDate" %>
 <%@ page import="org.dspace.content.DCLanguage" %>
 <%@ page import="org.dspace.content.DCPersonName" %>
 <%@ page import="org.dspace.content.DCSeriesNumber" %>
 <%@ page import="org.dspace.content.Metadatum" %>
 <%@ page import="org.dspace.content.Item" %>
+<%@ page import="org.dspace.content.ItemIterator" %>
 <%@ page import="org.dspace.content.authority.MetadataAuthorityManager" %>
 <%@ page import="org.dspace.content.authority.ChoiceAuthorityManager" %>
 <%@ page import="org.dspace.content.authority.Choices" %>
+<%@ page import="org.dspace.handle.HandleManager" %>
 <%@ page import="org.dspace.core.ConfigurationManager" %>
 <%@ page import="org.dspace.core.Utils" %>
 
@@ -997,9 +1001,10 @@
 
     void doDropDown(javax.servlet.jsp.JspWriter out, Item item,
       String fieldName, String schema, String element, String qualifier, boolean repeatable,
-      boolean required, boolean readonly, List valueList, String label)
+      boolean required, boolean readonly, List valueList, String label, Context context)
       throws java.io.IOException
     {
+
       Metadatum[] defaults = item.getMetadata(schema, element, qualifier, Item.ANY);
       StringBuffer sb = new StringBuffer();
       Iterator vals;
@@ -1021,38 +1026,65 @@
           sb.append(" disabled=\"disabled\"");
       }
       sb.append(">");
-
-
+  
+    
 
       if (label.equals("Datasets"))  //eddi mod (1st half of if stmt.)
       {
-    	  
-    	  
-    	  
-    	  
-    	  // get a list of items within collection #3
-    	  // get the handle and name of each item in the collection
-    	  //
-    	  
-    	  
-    	  
-    	  
+    	    
+	   	    DSpaceObject comDso = null;
+	   	 	String comName;
+    	    
     	  for (int i = 0; i < valueList.size(); i += 2)
           {
              display = (String)valueList.get(i);
              value = (String)valueList.get(i+1);
-             for (j = 0; j < defaults.length; j++)
-             {
-                 if (value.equals(defaults[j].value))
-                     break;
-             }
-             sb.append("<option ")
-               .append(j < defaults.length ? " selected=\"selected\" " : "")
-               .append("value=\"")
-               .append(value.replaceAll("\"", "&quot;"))
-               .append("\">")
-               .append(display)
-               .append("</option>");
+             
+	     	    try {
+		 	   	    comDso = HandleManager.resolveToObject(context, value);
+		 	   	    Collection comC = (Collection) comDso;
+		 	   	    ItemIterator ii = comC.getAllItems();
+		 	   	    
+		 	   	    //still need to sort items alphabetically by title
+		 	   	    /// maybe we'll need a step where you use the item iterator 
+		 	   	    /// to construct a hashmap of the variables for sorting & output that.
+		 	   	    
+		 	   	    try
+		            {
+		                while (ii.hasNext())
+		                {
+
+		                    Item dsItem = ii.next();
+							String itemValue = dsItem.getHandle();
+							String itemName = dsItem.getName();
+		                    
+		                    for (j = 0; j < defaults.length; j++)
+				             {
+								 if (itemValue.equals(defaults[j].value))
+				                     break;
+				             }
+				             sb.append("<option ")
+				               .append(j < defaults.length ? " selected=\"selected\" " : "")
+				               .append("value=\"")
+				               .append(itemValue)
+				               .append("\">")
+				               .append(itemName)
+				               .append("</option>");
+		                }
+		            }
+		            finally
+		            {
+		                if (ii != null)
+		                {
+		                    ii.close();
+		                }
+		            }
+				 	
+		        } catch (Exception e) {
+		            //do something clever with the exception
+		            System.out.println(e.getMessage());
+		        }            
+             
           }
       }else{
     	  for (int i = 0; i < valueList.size(); i += 2)
@@ -1100,7 +1132,6 @@
     }
 
 
-    
     /** Display Checkboxes or Radio buttons, depending on if repeatable! **/
     void doList(javax.servlet.jsp.JspWriter out, Item item,
             String fieldName, String schema, String element, String qualifier, boolean repeatable,
@@ -1241,8 +1272,6 @@
 <%
         contextPath = request.getContextPath();
 %>
-
-
 
   <form action="<%= request.getContextPath() %>/submit#<%= si.getJumpToField()%>" method="post" name="edit_metadata" id="edit_metadata" onkeydown="return disableEnterKey(event);">
 
@@ -1411,7 +1440,7 @@
        else if (inputType.equals("dropdown"))
        {
                         doDropDown(out, item, fieldName, dcSchema, dcElement, dcQualifier,
-                                   repeatable, required, readonly, inputs[z].getPairs(), label);
+                                   repeatable, required, readonly, inputs[z].getPairs(), label, context);
        }
        else if (inputType.equals("twobox"))
        {
