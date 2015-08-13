@@ -691,11 +691,11 @@ it, please enter the types and the actual numbers or codes below.</hint>
    <value-pairs value-pairs-name="dataset_defaults" dc-term="type">
      <pair>
        <displayed-value>ECG Datasets</displayed-value>
-       <stored-value>123456789/2</stored-value>
+       <stored-value>11614/2</stored-value>
      </pair>
      <pair>
-       <displayed-value>ECG Publications</displayed-value>
-       <stored-value>123456789/3</stored-value>
+       <displayed-value>EP Datasets</displayed-value>
+       <stored-value>11614/1655</stored-value>
      </pair>
    </value-pairs>
 
