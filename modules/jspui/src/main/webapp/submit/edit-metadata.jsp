@@ -1038,8 +1038,7 @@
     	    
 	   	    DSpaceObject comDso = null;
 	   	 	String comName;
-
-            TreeMap<String, String> dataSets = new TreeMap<String, String>();
+            TreeMap<String, String> dataSets = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
     	    
     	  for (int i = 0; i < valueList.size(); i += 2)
           {
@@ -1051,15 +1050,12 @@
 		 	   	    Collection comC = (Collection) comDso;
 		 	   	    ItemIterator ii = comC.getAllItems();
 		 	   	    
-		 	   	 	
 		 	   	    try
 		            {
 		                while (ii.hasNext())
 		                {
-	
 		                    Item dsItem = ii.next();
 							dataSets.put(dsItem.getName(), dsItem.getHandle());
-							
 		                }
 		            }
 		            finally
@@ -1080,8 +1076,6 @@
           }
     	  if (dataSets != null)
 	   	    {
-	   	  
-
 				Set set2 = dataSets.entrySet();
 				Iterator mapIterator = set2.iterator();
 				while(mapIterator.hasNext()) {
