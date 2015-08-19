@@ -23,6 +23,10 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+
+<%@ page import="java.util.TreeMap" %>
+<%@ page import="java.util.Set" %>
+
 <%@ page import="java.net.URLEncoder" %>
 
 <%@ page import="javax.servlet.jsp.jstl.fmt.LocaleSupport" %>
@@ -1034,42 +1038,28 @@
     	    
 	   	    DSpaceObject comDso = null;
 	   	 	String comName;
+
+            TreeMap<String, String> dataSets = new TreeMap<String, String>();
     	    
     	  for (int i = 0; i < valueList.size(); i += 2)
           {
              display = (String)valueList.get(i);
              value = (String)valueList.get(i+1);
-             
+		 	   	   
 	     	    try {
 		 	   	    comDso = HandleManager.resolveToObject(context, value);
 		 	   	    Collection comC = (Collection) comDso;
 		 	   	    ItemIterator ii = comC.getAllItems();
 		 	   	    
-		 	   	    //still need to sort items alphabetically by title
-		 	   	    /// maybe we'll need a step where you use the item iterator 
-		 	   	    /// to construct a hashmap of the variables for sorting & output that.
-		 	   	    
+		 	   	 	
 		 	   	    try
 		            {
 		                while (ii.hasNext())
 		                {
-
+	
 		                    Item dsItem = ii.next();
-							String itemValue = dsItem.getHandle();
-							String itemName = dsItem.getName();
-		                    
-		                    for (j = 0; j < defaults.length; j++)
-				             {
-								 if (itemValue.equals(defaults[j].value))
-				                     break;
-				             }
-				             sb.append("<option ")
-				               .append(j < defaults.length ? " selected=\"selected\" " : "")
-				               .append("value=\"")
-				               .append(itemValue)
-				               .append("\">")
-				               .append(itemName)
-				               .append("</option>");
+							dataSets.put(dsItem.getName(), dsItem.getHandle());
+							
 		                }
 		            }
 		            finally
@@ -1084,8 +1074,38 @@
 		            //do something clever with the exception
 		            System.out.println(e.getMessage());
 		        }            
-             
+            
+	     	  
+     	    
           }
+    	  if (dataSets != null)
+	   	    {
+	   	  
+
+				Set set2 = dataSets.entrySet();
+				Iterator mapIterator = set2.iterator();
+				while(mapIterator.hasNext()) {
+					Map.Entry me2 = (Map.Entry)mapIterator.next();
+
+					String outValue = me2.getValue().toString();
+					String outName = me2.getKey().toString();
+             	for (j = 0; j < defaults.length; j++)
+		             {
+						 if (outValue.equals(defaults[j].value))
+		                     break;
+		             }
+					
+		             sb.append("<option ")
+		               .append(j < defaults.length ? " selected=\"selected\" " : "")
+		               .append("value=\"")
+		               .append(outValue)
+		               .append("\">")
+		               .append(outName)
+		               .append("</option>");
+		             
+				}
+
+	   	    }
       }else{
     	  for (int i = 0; i < valueList.size(); i += 2)
           {
