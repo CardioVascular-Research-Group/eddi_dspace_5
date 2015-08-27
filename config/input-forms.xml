@@ -490,7 +490,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <label>Description</label>
          <input-type>textarea</input-type>
          <hint>The description of this data collection.</hint>
-         <required></required>
+         <required>Please enter as detailed a description of this research data as possible.</required>
        </field>
 
        <field>
@@ -523,7 +523,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <label>P.I. Affiliation</label>
          <input-type>onebox</input-type>
          <hint>University, Organization, and/or department P.I. is affiliated with.</hint>
-         <required></required>
+         <required>Please enter the University, Organization, and/or department this P.I. is affiliated with.</required>
        </field>
        
        <field>
@@ -534,7 +534,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
          <label>Investigators</label>
          <input-type>name</input-type>
          <hint>Names of all investigators/authors associated with this EP data.</hint>
-         <required></required>
+         <required>Please enter the name of at least 1 investigator/author associated with this data.</required>
        </field>
 
        <field>
