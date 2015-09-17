@@ -90,7 +90,7 @@
 		
 		<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
 			<xsl:value-of select="$newline"></xsl:value-of>
-			<xsl:text>UR  - http://hdl.handle.net</xsl:text>
+			<xsl:text>UR  - http://hdl.handle.net/</xsl:text>
 			<xsl:value-of select="."></xsl:value-of>
 		</xsl:for-each>	
 			
