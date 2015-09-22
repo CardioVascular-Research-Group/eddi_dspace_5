@@ -21,6 +21,12 @@
 			
 		<xsl:text>TI  - </xsl:text>
 		<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='title']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='uri']">
+			<xsl:value-of select="$newline"></xsl:value-of>
+			<xsl:text>AN  - </xsl:text>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='uri']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+		</xsl:if>
 		
 		<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='contributor']/doc:element[@name='author']/doc:element/doc:field[@name='value']">
 			<xsl:value-of select="$newline"></xsl:value-of>
@@ -69,7 +75,10 @@
 			<xsl:text>AB  - </xsl:text>
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='description']/doc:element[@name='abstract']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
-			
+		
+		<xsl:value-of select="$newline"></xsl:value-of>
+		<xsl:text>DB  - Electrophysiology Data Discovery Index (EDDI)</xsl:text>
+		
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='doi']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>DO  - </xsl:text>
