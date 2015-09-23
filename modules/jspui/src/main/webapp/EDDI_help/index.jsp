@@ -27,9 +27,9 @@
 <h1>EDDI User Guide</h1>
 <h2>Site Structure</h2>
 <h3><a href="/community-list">Communities &amp; Collections</a></h3>
-<p><a href="/community-list">Communities &amp; Collections</a> is the core element of the EDDI site. There are  currently communities for <a href="/handle/11614/1">ECG</a> and <a href="/handle/11614/1654">Electrophysiology Data.</a> These communities  each contain a collection for datasets and publications which can be accessed  directly from this page.</p>
+<p><a href="/community-list">Communities &amp; Collections</a> is the core element of the EDDI site. There are currently communities for <a href="/handle/11614/1">ECG</a> and <a href="/handle/11614/1654">Electrophysiology Data.</a> These communities  each contain a collection for datasets and publications which can be accessed  directly from this page.</p>
 <h3>Browsing Publications</h3>
-<p>The Publications Collection for a Community (e.g. ECG Publications) contains a  complete listing of all publications submitted. The index can be browsed by  Submit Date, Author, or Title order. Individual publication items contain all  metadata for a publication provided by the submitter. The &quot;Referenced  Datasets&quot; field contains a list of all Dataset items within EDDI that the  current publication references. Clicking on any entry will open the dataset in a  new tab of your browser.</p>
+<p>The Publications Collection for a Community (e.g. ECG Publications) contains a  complete listing of all publications submitted. The index can be browsed by  Submit Date, Author, or Title order. Individual publication items contain all  metadata for a publication provided by the submitter. The &quot;Referenced Datasets&quot; field contains a list of all Dataset items within EDDI that the  current publication references. Clicking on any entry will open the dataset in a  new tab of your browser.</p>
 <h3>Browsing Datasets</h3>
 <p>The Dataset page for a community contains a similar list of all datasets  submitted to a collection which can be sorted using the same criteria as  publications. A brief description of the most important metadata for dataset  entries is listed below. </p>
 <ul>
@@ -55,7 +55,7 @@
 <p><img style="border:2px solid black" src="../image/CVRG_EDDI_Workflow-extended-900px.jpg" /></p>
 
 <h2>Additional Resources</h2>
-<h3><a href="/mydspace">Search EDDI</a></h3>
+<h3><a href="/simple-search">Search EDDI</a></h3>
 <p>All fields in Data and Publication items are catalogued using a Solr Search  index. The 'Search EDDI' tab allows site users to quickly scan all entries  based on any data or publications documented in EDDI. The search page presents  users with a case-sensitive interface to search all its fields, returning all  items that meet the search criteria. The search results can then be filtered  further, based upon specific values for certain fields. </p>
 <h3><a href="/mydspace">My EDDI</a></h3>
 <p>The My EDDI page allows authenticated users to view their previous submissions of datasets  and publications and provides a quick link to the EDDI homepage as well as a  link to start new submissions. This page also contains a list of all in-process entries by that  user and items submitted to  the archive with their status in the curation process. Links to other  user management functions (email preferences and edit profile) are available in  the user login dropdown menu located in the top right corner of the page.<strong></strong></p>
