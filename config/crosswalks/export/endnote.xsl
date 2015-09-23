@@ -87,26 +87,32 @@
 			
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='uri']">
 			<xsl:value-of select="$newline"></xsl:value-of>
-			<xsl:text>UR  - </xsl:text>
+			<xsl:text>UR  -  URI to cite or link to this item: </xsl:text>
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='uri']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
 			
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='pmid']">
 			<xsl:value-of select="$newline"></xsl:value-of>
-			<xsl:text>UR  - http://www.ncbi.nlm.nih.gov/pubmed/?term=</xsl:text>
+			<xsl:text>UR  - Pubmed ID: http://www.ncbi.nlm.nih.gov/pubmed/?term=</xsl:text>
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='pmid']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
 		
 		<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
 			<xsl:value-of select="$newline"></xsl:value-of>
-			<xsl:text>UR  - http://hdl.handle.net/</xsl:text>
+			<xsl:text>UR  - Referenced Datasets: http://hdl.handle.net/</xsl:text>
 			<xsl:value-of select="."></xsl:value-of>
 		</xsl:for-each>	
 			
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessurl']">
 			<xsl:value-of select="$newline"></xsl:value-of>
-			<xsl:text>UR  - </xsl:text>
+			<xsl:text>UR  - Data Access URL(s): </xsl:text>
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessurl']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+		</xsl:if>	
+			
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='citationpub']">
+			<xsl:value-of select="$newline"></xsl:value-of>
+			<xsl:text>UR  - Data Use Citation: </xsl:text>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='citationpub']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>	
 			
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piname']">
