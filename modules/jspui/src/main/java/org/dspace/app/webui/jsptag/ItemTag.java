@@ -587,6 +587,7 @@ public class ItemTag extends TagSupport
 
                                 	String url = urn2baseurl.get(foundUrn);
                                 	//eddi config changes to check for database handle links and get full listing names via HandleManager
+                                	String appender = "";
                                 	String urlDisplayText = "";
                                 	String classOutput = "";
                                 	if (foundUrn.contains("hdl"))
@@ -605,28 +606,49 @@ public class ItemTag extends TagSupport
                                             			classOutput = foundUrn + " 0625b";
                                                 		urlDisplayText = dbTitleMetadata[k].value;
                                 					}else{
-                                            			classOutput = "dbmetadata_value_null 0625b";
+                                            			classOutput = "dbmetadata_value_null";
                                                 		urlDisplayText = values[j].value;
                                 					}
                                 				}	
                                 				
                                 			}else{
-                                    			classOutput = "dbmetadata_null 0625b";
+                                    			classOutput = "dbmetadata_null";
                                         		urlDisplayText = values[j].value;                                 		
                                 			}
 
                                 		}else{ 
-                                			classOutput = "dsoNotItem 0625b";
+                                			classOutput = "dsoNotItem";
                                     		urlDisplayText = values[j].value;
                                 		}                 	
 
+                                	}else if (foundUrn.contains("globus"))
+                                	{
+                                		Metadatum[] globusEpPath = item.getMetadata("dc", "ecg", "globusendpointpath", Item.ANY);
+                                		if (globusEpPath != null){
+                            				for (int k = 0; k < globusEpPath.length; k++)
+                            				{                                    		
+                            					if (globusEpPath[k] != null && globusEpPath[k].value != null)
+                            					{
+                                        			classOutput = foundUrn + " globuslink";
+                                            		appender = globusEpPath[k].value;
+                                        			urlDisplayText = values[j].value;
+                            					}else{
+                                        			classOutput = "dbmetadata_value_null globuslink";
+                                            		urlDisplayText = values[j].value;
+                            					}
+                            				}
+                            			}else{
+                                			classOutput = "dbmetadata_null globuslink";
+                                    		urlDisplayText = values[j].value;                                 		
+                            			}              	
+
                                 	}else{
-                            			classOutput = "notConthdl 0625b";
+                            			classOutput = "notConthdlorglobuslink";
                                 		urlDisplayText = values[j].value;
                                 	}
                                 	
                                 	out.print("<a class=\"" + classOutput + "\" href=\"" + url
-            								+ value + "\">"
+            								+ value + appender + "\">"
             								+ Utils.addEntities(urlDisplayText)  
             								+ "</a>");
                                                            	
