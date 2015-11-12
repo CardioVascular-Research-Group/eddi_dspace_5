@@ -355,6 +355,11 @@
     <servlet-name>certificate-login</servlet-name>
     <servlet-class>org.dspace.app.webui.servlet.X509CertificateServlet</servlet-class>
   </servlet>
+
+  <servlet>
+    <servlet-name>oauth-login</servlet-name>
+    <servlet-class>org.dspace.app.webui.servlet.OAuthServlet</servlet-class>
+  </servlet>
   
   <servlet>
     <servlet-name>profile</servlet-name>
