@@ -182,57 +182,57 @@ public class OAuthAuthentication implements AuthenticationMethod
         }
 
         // Second, try getting public key out of CA cert, if that's configured.
-        if (caCertPath != null)
-        {
-            InputStream is = null;
-            FileInputStream fis = null;
-            try
-            {
-                fis = new FileInputStream(caCertPath);
-                is = new BufferedInputStream(fis);
-                X509Certificate cert = (X509Certificate) CertificateFactory
-                        .getInstance("X.509").generateCertificate(is);
-                if (cert != null)
-                {
-                    caPublicKey = cert.getPublicKey();
-                }
-            }
-            catch (IOException e)
-            {
-                log.error("OAuthAuthentication: Failed to load CA cert, file="
-                        + caCertPath + ", error=" + e.toString());
-            }
-            catch (CertificateException e)
-            {
-                log
-                        .error("OAuthAuthentication: Failed to extract CA cert, file="
-                                + caCertPath + ", error=" + e.toString());
-            }
-            finally
-            {
-                if (is != null)
-                {
-                    try
-                    {
-                        is.close();
-                    }
-                    catch (IOException ioe)
-                    {
-                    }
-                }
-
-                if (fis != null)
-                {
-                    try
-                    {
-                        fis.close();
-                    }
-                    catch (IOException ioe)
-                    {
-                    }
-                }
-            }
-        }
+//        if (caCertPath != null)
+//        {
+//            InputStream is = null;
+//            FileInputStream fis = null;
+//            try
+//            {
+//                fis = new FileInputStream(caCertPath);
+//                is = new BufferedInputStream(fis);
+//                X509Certificate cert = (X509Certificate) CertificateFactory
+//                        .getInstance("X.509").generateCertificate(is);
+//                if (cert != null)
+//                {
+//                    caPublicKey = cert.getPublicKey();
+//                }
+//            }
+//            catch (IOException e)
+//            {
+//                log.error("OAuthAuthentication: Failed to load CA cert, file="
+//                        + caCertPath + ", error=" + e.toString());
+//            }
+//            catch (CertificateException e)
+//            {
+//                log
+//                        .error("OAuthAuthentication: Failed to extract CA cert, file="
+//                                + caCertPath + ", error=" + e.toString());
+//            }
+//            finally
+//            {
+//                if (is != null)
+//                {
+//                    try
+//                    {
+//                        is.close();
+//                    }
+//                    catch (IOException ioe)
+//                    {
+//                    }
+//                }
+//
+//                if (fis != null)
+//                {
+//                    try
+//                    {
+//                        fis.close();
+//                    }
+//                    catch (IOException ioe)
+//                    {
+//                    }
+//                }
+//            }
+//        }
     }
 
     /**
@@ -247,44 +247,44 @@ public class OAuthAuthentication implements AuthenticationMethod
      * @return - The email address found in certificate, or null if an email
      *         address cannot be found in the certificate.
      */
-    private static String getEmail(X509Certificate certificate)
-            throws SQLException
-    {
-        Principal principal = certificate.getSubjectDN();
-
-        if (principal == null)
-        {
-            return null;
-        }
-
-        String dn = principal.getName();
-        if (dn == null)
-        {
-            return null;
-        }
-
-        StringTokenizer tokenizer = new StringTokenizer(dn, ",");
-        String token = null;
-        while (tokenizer.hasMoreTokens())
-        {
-            int len = "emailaddress=".length();
-
-            token = (String) tokenizer.nextToken();
-
-            if (token.toLowerCase().startsWith("emailaddress="))
-            {
-                // Make sure the token actually contains something
-                if (token.length() <= len)
-                {
-                    return null;
-                }
-
-                return token.substring(len).toLowerCase();
-            }
-        }
-
-        return null;
-    }
+//    private static String getEmail(X509Certificate certificate)
+//            throws SQLException
+//    {
+//        Principal principal = certificate.getSubjectDN();
+//
+//        if (principal == null)
+//        {
+//            return null;
+//        }
+//
+//        String dn = principal.getName();
+//        if (dn == null)
+//        {
+//            return null;
+//        }
+//
+//        StringTokenizer tokenizer = new StringTokenizer(dn, ",");
+//        String token = null;
+//        while (tokenizer.hasMoreTokens())
+//        {
+//            int len = "emailaddress=".length();
+//
+//            token = (String) tokenizer.nextToken();
+//
+//            if (token.toLowerCase().startsWith("emailaddress="))
+//            {
+//                // Make sure the token actually contains something
+//                if (token.length() <= len)
+//                {
+//                    return null;
+//                }
+//
+//                return token.substring(len).toLowerCase();
+//            }
+//        }
+//
+//        return null;
+//    }
 
     /**
      * Verify CERTIFICATE against KEY. Return true if and only if CERTIFICATE is
