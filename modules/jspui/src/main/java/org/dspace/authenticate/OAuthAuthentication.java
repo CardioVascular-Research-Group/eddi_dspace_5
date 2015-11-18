@@ -33,6 +33,7 @@ import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
 import org.eurekaclinical.scribeupext.provider.GlobusProvider;
 import org.scribe.up.credential.OAuthCredential;
 import org.scribe.up.profile.UserProfile;
+import org.scribe.model.Token;
 
 import org.apache.log4j.Logger;
 import org.dspace.authenticate.AuthenticationMethod;
@@ -131,108 +132,6 @@ public class OAuthAuthentication implements AuthenticationMethod
                 .getProperty("authentication-oauth", "chooser.title.key");
         loginPageURL = ConfigurationManager
                 .getProperty("authentication-oauth", "chooser.uri");
-
-        String keystorePath = ConfigurationManager
-                .getProperty("authentication-oauth", "keystore.path");
-        String keystorePassword = ConfigurationManager
-                .getProperty("authentication-oauth", "keystore.password");
-        String caCertPath = ConfigurationManager
-                .getProperty("authentication-oauth", "ca.cert");
-
-        // First look for keystore full of trusted certs.
-        if (keystorePath != null)
-        {
-            FileInputStream fis = null;
-            if (keystorePassword == null)
-            {
-                keystorePassword = "";
-            }
-            try
-            {
-                KeyStore ks = KeyStore.getInstance("JKS");
-                fis = new FileInputStream(keystorePath);
-                ks.load(fis, keystorePassword.toCharArray());
-                caCertKeyStore = ks;
-            }
-            catch (IOException e)
-            {
-                log
-                        .error("OAuthAuthentication: Failed to load CA keystore, file="
-                                + keystorePath + ", error=" + e.toString());
-            }
-            catch (GeneralSecurityException e)
-            {
-                log
-                        .error("OAuthAuthentication: Failed to extract CA keystore, file="
-                                + keystorePath + ", error=" + e.toString());
-            }
-            finally
-            {
-                if (fis != null)
-                {
-                    try
-                    {
-                        fis.close();
-                    }
-                    catch (IOException ioe)
-                    {
-                    }
-                }
-            }
-        }
-
-        // Second, try getting public key out of CA cert, if that's configured.
-//        if (caCertPath != null)
-//        {
-//            InputStream is = null;
-//            FileInputStream fis = null;
-//            try
-//            {
-//                fis = new FileInputStream(caCertPath);
-//                is = new BufferedInputStream(fis);
-//                X509Certificate cert = (X509Certificate) CertificateFactory
-//                        .getInstance("X.509").generateCertificate(is);
-//                if (cert != null)
-//                {
-//                    caPublicKey = cert.getPublicKey();
-//                }
-//            }
-//            catch (IOException e)
-//            {
-//                log.error("OAuthAuthentication: Failed to load CA cert, file="
-//                        + caCertPath + ", error=" + e.toString());
-//            }
-//            catch (CertificateException e)
-//            {
-//                log
-//                        .error("OAuthAuthentication: Failed to extract CA cert, file="
-//                                + caCertPath + ", error=" + e.toString());
-//            }
-//            finally
-//            {
-//                if (is != null)
-//                {
-//                    try
-//                    {
-//                        is.close();
-//                    }
-//                    catch (IOException ioe)
-//                    {
-//                    }
-//                }
-//
-//                if (fis != null)
-//                {
-//                    try
-//                    {
-//                        fis.close();
-//                    }
-//                    catch (IOException ioe)
-//                    {
-//                    }
-//                }
-//            }
-//        }
     }
 
     /**
@@ -407,7 +306,7 @@ public class OAuthAuthentication implements AuthenticationMethod
      */
     public boolean isImplicit()
     {
-        return true;
+        return false;  //changed to false so dspace wouldn't try to run this before redirecting to the oauth page.
     }
 
     /**
@@ -580,53 +479,19 @@ public class OAuthAuthentication implements AuthenticationMethod
             String realm, HttpServletRequest request) throws SQLException
     {
 
-//		String oauthCode = ParamUtil.get(request, "code", "");
-		String oauthCode = ConfigurationManager
-                .getProperty("authentication-oauth", "oa.username");
-		
-
-		
-	
-		
-//        // Obtain the certificate from the request, if any
-//        X509Certificate[] certs = null;
-//        if (request != null)
-//        {
-//            certs = (X509Certificate[]) request
-//                    .getAttribute("javax.servlet.request.X509Certificate");
-//        }
-//
-//        if ((certs == null) || (certs.length == 0))
-//        {
-//            return BAD_ARGS;
-//        }
-//        else
-//        {
-//            // We have a cert -- check it and get username from it.
             try
             {
-//                if (!isValid(context, certs[0]))
-//                {
-//                    log
-//                            .warn(LogManager
-//                                    .getHeader(context, "authenticate",
-//                                            "type=OAuth, status=BAD_CREDENTIALS (not valid)"));
-//                    return BAD_CREDENTIALS;
-//                }
-//
+
             	String redirectURL = "https://128.220.76.132/oauth-login";
-//				String redirectURL = OAuthAuthentication.getSessionRedirectMap().get(request.getSession().getId());
-//				if(redirectURL != null && !redirectURL.isEmpty()){
-//					redirectURL = redirectURL.split("\\|")[0];
-//					OAuthAuthentication.getSessionRedirectMap().remove(request.getSession().getId());
-//					
-//				}
+        		String oauthCode = ConfigurationManager
+                        .getProperty("authentication-oauth", "oa.username");
+
 				
 				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
-				
+				String oauth_code = request.getParameter("code");
 				// Trade the Request Token and Verifier for the Access Token
 				System.out.println("Get user's OAuth credential...");
-				OAuthCredential credential = new OAuthCredential(null, null, oauthCode, provider.getType());
+				OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
 				System.out.println("Credential is " + credential);
 				
 				// Now, get the user's profile (access token is retrieved behind the scenes)
@@ -713,32 +578,27 @@ public class OAuthAuthentication implements AuthenticationMethod
         
     	try {
     		
-//    		long companyId = PortalUtil.getCompanyId(request);   // gets companyID from Liferay...
 			provider.setKey(oAuthUser);
 			provider.setSecret(oAuthPass);
 			
-//			StringBuilder url = new StringBuilder("http"); 
-//			
-//			if(request.isSecure()){
-//				url.append('s');
-//			}
-//			
-//			url.append("://");
-//			url.append(request.getServerName());
-//			
-//			if(request.getServerPort() != 80 && request.getServerPort() != 443){
-//				url.append(':').append(request.getServerPort());
-//			}
-//			
-//			url.append("/c/portal/login");
-//
-//			provider.setCallbackUrl(url.toString());
-			provider.setCallbackUrl("https://128.220.76.132/oauth-login");
-//			
+			StringBuilder url = new StringBuilder("http"); 
+			
+			if(request.isSecure()){
+				url.append('s');
+			}
+			
+			url.append("://");
+			url.append(request.getServerName());
+			
+			if(request.getServerPort() != 80 && request.getServerPort() != 443){
+				url.append(':').append(request.getServerPort());
+			}
+			System.out.println(url.toString()+"urlstringhere");
+			provider.setCallbackUrl(url.toString());
+			
 		} catch (Exception e) {
 			System.out.println("Error in Globus OAuth URL generation. Message = " + e.getMessage());
 		}
-//		
 		return provider;
     	
     }
