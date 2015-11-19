@@ -528,7 +528,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                         return SUCCESS;
                     }
                     else
-                    {
+                    { 
                         // No auto-registration for valid certs
                         log
                                 .warn(LogManager
