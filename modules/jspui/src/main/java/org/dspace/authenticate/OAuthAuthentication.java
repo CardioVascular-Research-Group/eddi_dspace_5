@@ -553,6 +553,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 //                            "type=x509certificate"));
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
+                    System.out.println("successful authentication?");
                     return SUCCESS;
                 }
             }

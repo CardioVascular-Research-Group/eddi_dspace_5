@@ -113,13 +113,15 @@ public class OAuthServlet extends DSpaceServlet
 			Context ctx = UIUtil.obtainContext(request);
 
             EPerson eperson = ctx.getCurrentUser();
+	    	System.out.println("Eperson [servlet116]:" + eperson);
 
             // Do we have an active e-person now?
             if ((eperson != null) && eperson.canLogIn())
             {
+		    	System.out.println("active eperson = login...?");
                 // Everything OK - they should have already been logged in.
                 // resume previous request
-                Authenticate.resumeInterruptedRequest(request, response);
+                //Authenticate.resumeInterruptedRequest(request, response);
 
                 return;
             }
