@@ -26,6 +26,12 @@ import org.dspace.core.LogManager;
 import org.dspace.eperson.EPerson;
 import org.dspace.authenticate.OAuthAuthentication;
 
+import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
+import org.eurekaclinical.scribeupext.provider.GlobusProvider;
+import org.scribe.up.credential.OAuthCredential;
+import org.scribe.up.profile.UserProfile;
+import org.scribe.model.Token;
+
 /**
  * X509 certificate authentication servlet. This is an
  * access point for interactive certificate auth that will
@@ -97,11 +103,14 @@ public class OAuthServlet extends DSpaceServlet
 			    
 			}
 			
-			log.info(LogManager.getHeader(context, "oauth-codee",
-	                oauth_code));
-		
+			
+			
+			/*log.info(LogManager.getHeader(context, "oauth-codee",
+	                oauth_code));*/
+			OAuthAuthentication authCode = new OAuthAuthentication();
+			authCode.authenticate(context, null, null, null, request);
 
-            Context ctx = UIUtil.obtainContext(request);
+			Context ctx = UIUtil.obtainContext(request);
 
             EPerson eperson = ctx.getCurrentUser();
 

@@ -306,7 +306,7 @@ public class OAuthAuthentication implements AuthenticationMethod
      */
     public boolean isImplicit()
     {
-        return false;  //changed to false so dspace wouldn't try to run this before redirecting to the oauth page.
+        return true;  //changed to false so dspace wouldn't try to run this before redirecting to the oauth page.
     }
 
     /**
@@ -482,13 +482,9 @@ public class OAuthAuthentication implements AuthenticationMethod
             try
             {
 
-            	String redirectURL = "https://128.220.76.132/oauth-login";
-        		String oauthCode = ConfigurationManager
-                        .getProperty("authentication-oauth", "oa.username");
-
+            	String oauth_code = request.getParameter("code");
 				
 				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
-				String oauth_code = request.getParameter("code");
 				// Trade the Request Token and Verifier for the Access Token
 				System.out.println("Get user's OAuth credential...");
 				OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
@@ -500,10 +496,12 @@ public class OAuthAuthentication implements AuthenticationMethod
 				
                 // And it's valid - try and get an e-person
             	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+				System.out.println("EurekaAttributesEmail:" + email);
                 EPerson eperson = null;
                 if (email != null)
                 {
                     eperson = EPerson.findByEmail(context, email);
+    				System.out.println("eperson:" + eperson);
                 }
                 if (eperson == null)
                 {
@@ -575,13 +573,15 @@ public class OAuthAuthentication implements AuthenticationMethod
                 .getProperty("authentication-oauth", "oa.username");
         String oAuthPass = ConfigurationManager
                 .getProperty("authentication-oauth", "oa.password");
+        String oAuthGlobusRedirect = ConfigurationManager
+                .getProperty("authentication-oauth", "oa.globusredirect");
         
     	try {
     		
 			provider.setKey(oAuthUser);
 			provider.setSecret(oAuthPass);
 			
-			StringBuilder url = new StringBuilder("http"); 
+			/*StringBuilder url = new StringBuilder("http"); 
 			
 			if(request.isSecure()){
 				url.append('s');
@@ -591,10 +591,11 @@ public class OAuthAuthentication implements AuthenticationMethod
 			url.append(request.getServerName());
 			
 			if(request.getServerPort() != 80 && request.getServerPort() != 443){
-				url.append(':').append(request.getServerPort());
-			}
-			System.out.println(url.toString()+"urlstringhere");
-			provider.setCallbackUrl(url.toString());
+				url.append(':').append(oAuthGlobusRedirect);
+			}*/
+			System.out.println(oAuthGlobusRedirect + "urlstringhere");
+			provider.setCallbackUrl(oAuthGlobusRedirect);
+			//provider.setCallbackUrl(url.toString());
 			
 		} catch (Exception e) {
 			System.out.println("Error in Globus OAuth URL generation. Message = " + e.getMessage());
