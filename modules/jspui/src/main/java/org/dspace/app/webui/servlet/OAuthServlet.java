@@ -77,17 +77,17 @@ public class OAuthServlet extends DSpaceServlet
         }
     	else
     	{
-//			OAuthAuthentication authCode = new OAuthAuthentication();
-//			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
-//			{
-				Context ctx = UIUtil.obtainContext(request);
+			OAuthAuthentication authCode = new OAuthAuthentication();
+			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
+			{
+				//Context ctx = UIUtil.obtainContext(request);
 				
-	            EPerson eperson = ctx.getCurrentUser();
-		    	System.out.println("Eperson [servlet65]:" + eperson);
+	            //EPerson eperson = ctx.getCurrentUser();
+//		    	System.out.println("Eperson [servlet86]:" + eperson);
 	
 	            // Do we have an active e-person now?
-	            if ((eperson != null) && eperson.canLogIn())
-	            {
+//	            if ((eperson != null) && eperson.canLogIn())
+//	            {
 			    	System.out.println("active eperson = login...?");
 	                
 			    	HttpSession saison = request.getSession();
@@ -98,23 +98,23 @@ public class OAuthServlet extends DSpaceServlet
 			        
 			    	// Everything OK - they should have already been logged in.
 	                // resume previous request
-	                Authenticate.resumeInterruptedRequest(request, response);
+                    Authenticate.resumeInterruptedRequest(request, response);
 	
 	                return;
-	            }
-	
-	            // If we get to here, no valid cert
-	            log.info(LogManager.getHeader(context, "failed_login",
-	                    "type=oauth_token-nv-token"));
-	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-//			}
-//			else
-//			{
+//	            }
+//	
+//	            // If we get to here, no valid cert
 //	            log.info(LogManager.getHeader(context, "failed_login",
-//	                    "type=oauth_authCode.authenticate_failure"));
-//		    	System.out.println("");
+//	                    "type=oauth_token-nv-token"));
 //	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-//			}
+			}
+			else
+			{
+	            log.info(LogManager.getHeader(context, "failed_login",
+	                    "type=oauth_authCode.authenticate_failure"));
+		    	System.out.println("");
+	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+			}
     	}
     }
 }
