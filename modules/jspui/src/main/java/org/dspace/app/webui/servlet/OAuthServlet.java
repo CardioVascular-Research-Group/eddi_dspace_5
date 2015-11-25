@@ -76,7 +76,7 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 			OAuthAuthentication authCode = new OAuthAuthentication();
-			if (authCode.authenticate(context, null, null, null, request == SUCCESS))
+			if (authCode.authenticate(context, null, null, null, request) == 1)
 			{
 				Context ctx = UIUtil.obtainContext(request);
 				
