@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.dspace.app.webui.util.Authenticate;
@@ -90,12 +89,7 @@ public class OAuthServlet extends DSpaceServlet
 //	            {
 			    	System.out.println("active eperson = login...?");
 	                
-			    	HttpSession saison = request.getSession();
-			        String originalURL = (String) saison
-			                .getAttribute("interrupted.request.url");
-			    	System.out.println("original url = " + originalURL);
 			    	
-			        
 			    	// Everything OK - they should have already been logged in.
 	                // resume previous request
                     Authenticate.resumeInterruptedRequest(request, response);
