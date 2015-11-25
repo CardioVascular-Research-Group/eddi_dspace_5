@@ -421,7 +421,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                 }
 
                 else
-                {
+                { 
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
                     System.out.println("successful authentication [oAuthAuthentication429]:" + eperson);
