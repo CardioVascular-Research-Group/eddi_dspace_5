@@ -33,9 +33,9 @@ import org.scribe.up.profile.UserProfile;
 import org.scribe.model.Token;
 
 /**
- * X509 certificate authentication servlet. This is an
- * access point for interactive certificate auth that will
- * not be implicit (i.e. not immediately performed
+ * oAuth authentication servlet. This is an
+ * access point for oAuth that will not be 
+ * implicit (i.e. not immediately performed
  * because the resource is being accessed via HTTP
  * 
  * @author Robert Tansley
@@ -54,10 +54,12 @@ public class OAuthServlet extends DSpaceServlet
             HttpServletResponse response) throws ServletException, IOException,
             SQLException, AuthorizeException
     {
-    	String[] oauthParts;
-		String oauth_code = request.getParameter("code");
+			
 
-        if ((oauth_code == null) || (oauth_code.length() == 0))
+
+    	String oauth_code = request.getParameter("code");
+    	
+    	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
             log.info(LogManager.getHeader(context, "no_oauth_code",
@@ -70,66 +72,39 @@ public class OAuthServlet extends DSpaceServlet
                     .getProperty("authentication-oauth", "oa.username");
             String contextPath= globusLogin + "&client_id=" + globusUsername + "&redirect_uri=" + globusRedirect;
             response.sendRedirect(response.encodeRedirectURL(contextPath));
-            //JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
         }
-        else
-        {
-		
-			if (oauth_code.contains("|")) {
-				oauthParts = oauth_code.split("\\|");
-			} else {
-			    throw new IllegalArgumentException("String " + oauth_code + " does not contain |");
-			}
-			for (String s: oauthParts) {
-				
-			    if (s.startsWith("un=")){
-			    	String oauth_un = s.substring(s.lastIndexOf("=") + 1);
-			    	System.out.println("oauth_un equals " + oauth_un);
-			    }else if (s.startsWith("client_id=")){
-			    	String oauth_client_id = s.substring(s.lastIndexOf("=") + 1);
-			    	System.out.println("oauth_client_id equals " + oauth_client_id);
-			    }else if (s.startsWith("expiry=")){
-			    	String oauth_expiry = s.substring(s.lastIndexOf("=") + 1);
-			    	System.out.println("oauth_expiry equals " + oauth_expiry);
-			    }else if (s.startsWith("SigningSubject=")){
-			    	String oauth_SigningSubject = s.substring(s.lastIndexOf("=") + 1);
-			    	System.out.println("oauth_SigningSubject equals " + oauth_SigningSubject);
-			    }else if (s.startsWith("sig=")){
-			    	String oauth_sig = s.substring(s.lastIndexOf("=") + 1);
-			    	System.out.println("oauth_sig equals " + oauth_sig);
-			    }else{
-			    	System.out.println("Non-OAuth String: " + s);
-			    }
-			    
-			} 
-			
-			
-			
-			/*log.info(LogManager.getHeader(context, "oauth-codee",
-	                oauth_code));*/
+    	else
+    	{
 			OAuthAuthentication authCode = new OAuthAuthentication();
-			authCode.authenticate(context, null, null, null, request);
-
-			Context ctx = UIUtil.obtainContext(request);
-
-            EPerson eperson = ctx.getCurrentUser();
-	    	System.out.println("Eperson [servlet116]:" + eperson);
-
-            // Do we have an active e-person now?
-            if ((eperson != null) && eperson.canLogIn())
-            {
-		    	System.out.println("active eperson = login...?");
-                // Everything OK - they should have already been logged in.
-                // resume previous request
-                //Authenticate.resumeInterruptedRequest(request, response);
-
-                return;
-            }
-
-            // If we get to here, no valid cert
-            log.info(LogManager.getHeader(context, "failed_login",
-                    "type=oauth_token-nv-token"));
-            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-        }
+			if (authCode.authenticate(context, null, null, null, request == SUCCESS))
+			{
+				Context ctx = UIUtil.obtainContext(request);
+				
+	            EPerson eperson = ctx.getCurrentUser();
+		    	System.out.println("Eperson [servlet65]:" + eperson);
+	
+	            // Do we have an active e-person now?
+	            if ((eperson != null) && eperson.canLogIn())
+	            {
+			    	System.out.println("active eperson = login...?");
+	                // Everything OK - they should have already been logged in.
+	                // resume previous request
+	                Authenticate.resumeInterruptedRequest(request, response);
+	
+	                return;
+	            }
+	
+	            // If we get to here, no valid cert
+	            log.info(LogManager.getHeader(context, "failed_login",
+	                    "type=oauth_token-nv-token"));
+	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+			}
+			else
+			{
+	            log.info(LogManager.getHeader(context, "failed_login",
+	                    "type=oauth_authCode.authenticate_failure"));
+	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+			}
+    	}
     }
 }

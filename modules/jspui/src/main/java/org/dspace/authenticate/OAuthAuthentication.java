@@ -107,12 +107,6 @@ public class OAuthAuthentication implements AuthenticationMethod
     /** log4j category */
     private static Logger log = Logger.getLogger(OAuthAuthentication.class);
 
-    /** public key of CA to check client certs against. */
-    private static PublicKey caPublicKey = null;
-
-    /** key store for CA certs if we use that */
-    private static KeyStore caCertKeyStore = null;
-
     private static String loginPageTitle = null;
 
     private static String loginPageURL = null;
@@ -146,130 +140,6 @@ public class OAuthAuthentication implements AuthenticationMethod
      * @return - The email address found in certificate, or null if an email
      *         address cannot be found in the certificate.
      */
-//    private static String getEmail(X509Certificate certificate)
-//            throws SQLException
-//    {
-//        Principal principal = certificate.getSubjectDN();
-//
-//        if (principal == null)
-//        {
-//            return null;
-//        }
-//
-//        String dn = principal.getName();
-//        if (dn == null)
-//        {
-//            return null;
-//        }
-//
-//        StringTokenizer tokenizer = new StringTokenizer(dn, ",");
-//        String token = null;
-//        while (tokenizer.hasMoreTokens())
-//        {
-//            int len = "emailaddress=".length();
-//
-//            token = (String) tokenizer.nextToken();
-//
-//            if (token.toLowerCase().startsWith("emailaddress="))
-//            {
-//                // Make sure the token actually contains something
-//                if (token.length() <= len)
-//                {
-//                    return null;
-//                }
-//
-//                return token.substring(len).toLowerCase();
-//            }
-//        }
-//
-//        return null;
-//    }
-
-    /**
-     * Verify CERTIFICATE against KEY. Return true if and only if CERTIFICATE is
-     * valid and can be verified against KEY.
-     *
-     * @param context
-     *            The current DSpace context
-     * @param certificate -
-     *            An X509 certificate object
-     * @return - True if CERTIFICATE is valid and can be verified against KEY,
-     *         false otherwise.
-     */
-   private static boolean isValid(Context context, X509Certificate certificate)
-    {
-//        if (certificate == null)
-//        {
-//            return false;
-//        }
-//
-//        // This checks that current time is within cert's validity window:
-//        try
-//        {
-//            certificate.checkValidity();
-//        }
-//        catch (CertificateException e)
-//        {
-//            log.info(LogManager.getHeader(context, "authentication",
-//                    "X.509 Certificate is EXPIRED or PREMATURE: "
-//                            + e.toString()));
-//            return false;
-//        }
-//
-//        // Try CA public key, if available.
-//        if (caPublicKey != null)
-//        {
-//            try
-//            {
-//                certificate.verify(caPublicKey);
-//                return true;
-//            }
-//            catch (GeneralSecurityException e)
-//            {
-//                log.info(LogManager.getHeader(context, "authentication",
-//                        "X.509 Certificate FAILED SIGNATURE check: "
-//                                + e.toString()));
-//            }
-//        }
-//
-//        // Try it with keystore, if available.
-//        if (caCertKeyStore != null)
-//        {
-//            try
-//            {
-//                Enumeration ke = caCertKeyStore.aliases();
-//
-//                while (ke.hasMoreElements())
-//                {
-//                    String alias = (String) ke.nextElement();
-//                    if (caCertKeyStore.isCertificateEntry(alias))
-//                    {
-//                        Certificate ca = caCertKeyStore.getCertificate(alias);
-//                        try
-//                        {
-//                            certificate.verify(ca.getPublicKey());
-//                            return true;
-//                        }
-//                        catch (CertificateException ce)
-//                        {
-//                        }
-//                    }
-//                }
-//                log
-//                        .info(LogManager
-//                                .getHeader(context, "authentication",
-//                                        "Keystore method FAILED SIGNATURE check on client cert."));
-//            }
-//            catch (GeneralSecurityException e)
-//            {
-//                log.info(LogManager.getHeader(context, "authentication",
-//                        "X.509 Certificate FAILED SIGNATURE check: "
-//                                + e.toString()));
-//            }
-//
-//        }
-        return true;
-    }
 
     /**
      * Predicate, can new user automatically create EPerson. Checks
@@ -306,7 +176,7 @@ public class OAuthAuthentication implements AuthenticationMethod
      */
     public boolean isImplicit()
     {
-        return true;  //changed to false so dspace wouldn't try to run this before redirecting to the oauth page.
+        return true;
     }
 
     /**
@@ -315,17 +185,17 @@ public class OAuthAuthentication implements AuthenticationMethod
      * 
      * @return List<String> of special groups configured for this authenticator
      */
-    private List<String> getX509Groups()
+    private List<String> getOAuthGroups()
     {
         List<String> groupNames = new ArrayList<String>();
 
-        String x509GroupConfig = null;
-        x509GroupConfig = ConfigurationManager
+        String oAuthGroupConfig = null;
+        oAuthGroupConfig = ConfigurationManager
                 .getProperty("authentication-oauth", "groups");
 
-        if (null != x509GroupConfig && !"".equals(x509GroupConfig))
+        if (null != oAuthGroupConfig && !"".equals(oAuthGroupConfig))
         {
-            String[] groups = x509GroupConfig.split("\\s*,\\s*");
+            String[] groups = oAuthGroupConfig.split("\\s*,\\s*");
 
             for (int i = 0; i < groups.length; i++)
             {
@@ -344,7 +214,7 @@ public class OAuthAuthentication implements AuthenticationMethod
      * @param request -
      *            The current request object
      * @param email -
-     *            The email address from the x509 certificate
+     *            The email address from the oAuth credential
      */
     private void setSpecialGroupsFlag(HttpServletRequest request, String email)
     {
@@ -371,7 +241,7 @@ public class OAuthAuthentication implements AuthenticationMethod
     }
 
     /**
-     * Return special groups configured in dspace.cfg for X509 certificate
+     * Return special groups configured in dspace.cfg for oAuth
      * authentication.
      * 
      * @param context
@@ -391,12 +261,12 @@ public class OAuthAuthentication implements AuthenticationMethod
 
         Boolean authenticated = false;
         HttpSession session = request.getSession(false);
-        authenticated = (Boolean) session.getAttribute("oauth");
+        authenticated = (Boolean) session.getAttribute("OAuth");
         authenticated = (null == authenticated) ? false : authenticated;
 
         if (authenticated)
         {
-            List<String> groupNames = getX509Groups();
+            List<String> groupNames = getOAuthGroups();
             List<Integer> groupIDs = new ArrayList<Integer>();
 
             if (groupNames != null)
@@ -450,14 +320,8 @@ public class OAuthAuthentication implements AuthenticationMethod
     }
 
     
-	
-   
-    
-    
-    
     /**
-     * X509 certificate authentication. The client certificate is obtained from
-     * the <code>ServletRequest</code> object.
+     * oAuth authentication. 
      * <ul>
      * <li>If the certificate is valid, and corresponds to an existing EPerson,
      * and the user is allowed to login, return success.</li>
@@ -479,11 +343,20 @@ public class OAuthAuthentication implements AuthenticationMethod
             String realm, HttpServletRequest request) throws SQLException
     {
 
-            try
-            {
-
-            	String oauth_code = request.getParameter("code");
-				
+    	String oauth_code = request.getParameter("code");
+    	
+    	if ((oauth_code == null) || (oauth_code.length() == 0))
+        {
+    		// if oauth_code = null, construct url and redirect to globus login page here...
+            log.info(LogManager.getHeader(context, "no_oauth_code",
+                    "type=no-code_oauthAuthentication352"));
+            return BAD_ARGS;
+        }
+    	else
+    	{
+	    	try
+	        {
+    	
 				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
 				// Trade the Request Token and Verifier for the Access Token
 				System.out.println("Get user's OAuth credential...");
@@ -549,8 +422,6 @@ public class OAuthAuthentication implements AuthenticationMethod
 
                 else
                 {
-//                    log.info(LogManager.getHeader(context, "login",
-//                            "type=x509certificate"));
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
                     System.out.println("successful authentication?");
@@ -562,9 +433,9 @@ public class OAuthAuthentication implements AuthenticationMethod
                 log.warn(LogManager.getHeader(context, "authorize_exception",
                         ""), ce);
             }
+    	}
 
-            return BAD_ARGS;
-//        }
+        return BAD_ARGS;
     }
 
     public static GlobusProvider getGlobusOAuthURL(HttpServletRequest request){
@@ -582,18 +453,6 @@ public class OAuthAuthentication implements AuthenticationMethod
 			provider.setKey(oAuthUser);
 			provider.setSecret(oAuthPass);
 			
-			/*StringBuilder url = new StringBuilder("http"); 
-			
-			if(request.isSecure()){
-				url.append('s');
-			}
-			
-			url.append("://");
-			url.append(request.getServerName());
-			
-			if(request.getServerPort() != 80 && request.getServerPort() != 443){
-				url.append(':').append(oAuthGlobusRedirect);
-			}*/
 			System.out.println(oAuthGlobusRedirect + "urlstringhere");
 			provider.setCallbackUrl(oAuthGlobusRedirect);
 			//provider.setCallbackUrl(url.toString());
