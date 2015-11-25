@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.dspace.app.webui.util.Authenticate;
@@ -24,6 +25,7 @@ import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
 import org.dspace.core.LogManager;
 import org.dspace.eperson.EPerson;
+import org.dspace.authenticate.AuthenticationMethod;
 import org.dspace.authenticate.OAuthAuthentication;
 
 import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
@@ -76,7 +78,7 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 			OAuthAuthentication authCode = new OAuthAuthentication();
-			if (authCode.authenticate(context, null, null, null, request) == 1)
+			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
 			{
 				Context ctx = UIUtil.obtainContext(request);
 				
@@ -87,7 +89,14 @@ public class OAuthServlet extends DSpaceServlet
 	            if ((eperson != null) && eperson.canLogIn())
 	            {
 			    	System.out.println("active eperson = login...?");
-	                // Everything OK - they should have already been logged in.
+	                
+			    	HttpSession saison = request.getSession();
+			        String originalURL = (String) saison
+			                .getAttribute("interrupted.request.url");
+			    	System.out.println("original url = " + originalURL);
+			    	
+			        
+			    	// Everything OK - they should have already been logged in.
 	                // resume previous request
 	                Authenticate.resumeInterruptedRequest(request, response);
 	
@@ -103,6 +112,7 @@ public class OAuthServlet extends DSpaceServlet
 			{
 	            log.info(LogManager.getHeader(context, "failed_login",
 	                    "type=oauth_authCode.authenticate_failure"));
+		    	System.out.println("");
 	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
 			}
     	}

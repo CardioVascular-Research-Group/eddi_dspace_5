@@ -423,6 +423,8 @@ public class OAuthAuthentication implements AuthenticationMethod
                 else
                 {
                     context.setCurrentUser(eperson);
+    	            EPerson qqQ = context.getCurrentUser();
+    		    	System.out.println("Eperson [oAuthAuthentication426]:" + qqQ);
                     setSpecialGroupsFlag(request, email);
                     System.out.println("successful authentication?");
                     return SUCCESS;
