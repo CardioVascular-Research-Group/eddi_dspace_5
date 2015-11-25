@@ -424,7 +424,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                 { 
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
-                    System.out.println("successful authentication [oAuthAuthentication429]:" + eperson);
+                    System.out.println("successful authentication [oAuthAuthentication427]:" + eperson);
                     return SUCCESS;
                 }
             }
@@ -453,7 +453,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 			provider.setKey(oAuthUser);
 			provider.setSecret(oAuthPass);
 			
-			System.out.println(oAuthGlobusRedirect + "urlstringhere");
+			System.out.println(oAuthGlobusRedirect + " oAuthGlobusRedirect url string");
 			provider.setCallbackUrl(oAuthGlobusRedirect);
 			//provider.setCallbackUrl(url.toString());
 			

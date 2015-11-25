@@ -76,18 +76,18 @@ public class OAuthServlet extends DSpaceServlet
         }
     	else
     	{
-//			OAuthAuthentication authCode = new OAuthAuthentication();
-//			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
-//			{
+			OAuthAuthentication authCode = new OAuthAuthentication();
+			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
+			{
 				Context ctx = UIUtil.obtainContext(request);
 				
 	            EPerson eperson = ctx.getCurrentUser();
-		    	System.out.println("Eperson [servlet65]:" + eperson);
+		    	System.out.println("Eperson [servlet85]:" + eperson);
 	
 	            // Do we have an active e-person now?
 	            if ((eperson != null) && eperson.canLogIn())
 	            {
-			    	System.out.println("active eperson = login...?");
+			    	System.out.println("active eperson [servlet90]:" + request);
 	                
 			    	
 			    	// Everything OK - they should have already been logged in.
@@ -101,14 +101,14 @@ public class OAuthServlet extends DSpaceServlet
 	            log.info(LogManager.getHeader(context, "failed_login",
 	                    "type=oauth_token-nv-token"));
 	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-//			}
-//			else
-//			{
-//	            log.info(LogManager.getHeader(context, "failed_login",
-//	                    "type=oauth_authCode.authenticate_failure"));
-//		    	System.out.println("");
-//	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-//			}
+			}
+			else
+			{
+	            log.info(LogManager.getHeader(context, "failed_login",
+	                    "type=oauth_authCode.authenticate_failure"));
+		    	System.out.println("");
+	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+			}
     	}
     }
 }
