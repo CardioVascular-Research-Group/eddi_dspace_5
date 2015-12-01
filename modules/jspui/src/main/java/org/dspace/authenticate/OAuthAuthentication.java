@@ -343,7 +343,7 @@ public class OAuthAuthentication implements AuthenticationMethod
             String realm, HttpServletRequest request) throws SQLException
     {
 
-    	String oauth_code = request.getSession().getAttribute("oauthcode");
+    	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
