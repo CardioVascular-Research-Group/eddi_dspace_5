@@ -76,12 +76,35 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 			request.getSession().setAttribute("oauthcode", oauth_code);
-			OAuthAuthentication authCode = new OAuthAuthentication();
-			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
-			{
+
+			GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
+			System.out.println("Get user's OAuth credential...");
+			OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
+			System.out.println("Credential is " + credential);
+			
+			// Now, get the user's profile (access token is retrieved behind the scenes)
+			UserProfile userProfile = provider.getUserProfile(credential);
+			System.out.println("The user's profile is:" + userProfile.getAttributes());
+			
+            // And it's valid - try and get an e-person
+        	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+			request.getSession().setAttribute("oauthemail", email);
+			System.out.println("EurekaAttributesEmail:" + email);
+            EPerson eperson = null;
+            if (email != null)
+            {
+                eperson = EPerson.findByEmail(context, email);
+				System.out.println("eperson:" + eperson);
+            }
+			
+//			OAuthAuthentication authCode = new OAuthAuthentication();
+//			if (authCode.authenticate(context, null, null, null, request) == AuthenticationMethod.SUCCESS)
+//			{
 			Context ctx = UIUtil.obtainContext(request);
 			
-            EPerson eperson = ctx.getCurrentUser();
+            if (eperson == null){
+            	eperson = ctx.getCurrentUser();
+            }
 	    	System.out.println("Eperson [servlet85]:" + eperson);
 
             // Do we have an active e-person now?
@@ -101,14 +124,14 @@ public class OAuthServlet extends DSpaceServlet
             log.info(LogManager.getHeader(context, "failed_login",
                     "type=oauth_token-nv-token"));
             JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-			}
-			else
-			{
-	            log.info(LogManager.getHeader(context, "failed_login",
-	                    "type=oauth_authCode.authenticate_failure"));
-		    	System.out.println("");
-	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
-			}
+//			}
+//			else
+//			{
+//	            log.info(LogManager.getHeader(context, "failed_login",
+//	                    "type=oauth_authCode.authenticate_failure"));
+//		    	System.out.println("");
+//	            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+//			}
     	}
     }
 }
