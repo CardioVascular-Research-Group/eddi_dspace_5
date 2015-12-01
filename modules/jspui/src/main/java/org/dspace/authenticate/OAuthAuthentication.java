@@ -344,6 +344,7 @@ public class OAuthAuthentication implements AuthenticationMethod
     {
 
     	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
+    	String email = (String)request.getSession().getAttribute("oauthemail");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
@@ -356,20 +357,20 @@ public class OAuthAuthentication implements AuthenticationMethod
     	{
 	    	try
 	        {
-    	
-				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
+//    	
+//				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
 				// Trade the Request Token and Verifier for the Access Token
-				System.out.println("Get user's OAuth credential...");
-				OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-				System.out.println("Credential is " + credential);
-				
-				// Now, get the user's profile (access token is retrieved behind the scenes)
-				UserProfile userProfile = provider.getUserProfile(credential);
-				System.out.println("The user's profile is:" + userProfile.getAttributes());
-				
-                // And it's valid - try and get an e-person
-            	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
-				System.out.println("EurekaAttributesEmail:" + email);
+//				System.out.println("Get user's OAuth credential...");
+//				OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
+//				System.out.println("Credential is " + credential);
+//				
+//				// Now, get the user's profile (access token is retrieved behind the scenes)
+//				UserProfile userProfile = provider.getUserProfile(credential);
+//				System.out.println("The user's profile is:" + userProfile.getAttributes());
+//				
+//                // And it's valid - try and get an e-person
+//            	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+//				System.out.println("EurekaAttributesEmail:" + email);
                 EPerson eperson = null;
                 if (email != null)
                 {
