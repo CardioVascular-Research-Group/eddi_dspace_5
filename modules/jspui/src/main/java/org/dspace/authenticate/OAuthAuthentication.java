@@ -315,6 +315,12 @@ public class OAuthAuthentication implements AuthenticationMethod
     {
 
     	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
+
+    	if ((oauth_code == null) || (oauth_code.length() == 0))
+        {
+    		// if oauth_code = null, construct url and redirect to globus login page here...
+    		return BAD_ARGS;
+        }
     	//String email = (String)request.getSession().getAttribute("oauthemail");
     	
 		GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
