@@ -129,19 +129,6 @@ public class OAuthAuthentication implements AuthenticationMethod
     }
 
     /**
-     * Return the email address from <code>certificate</code>, or null if an
-     * email address cannot be found in the certificate.
-     * <p>
-     * Note that the certificate parsing has only been tested with certificates
-     * granted by the MIT Certification Authority, and may not work elsewhere.
-     * 
-     * @param certificate -
-     *            An X509 certificate object
-     * @return - The email address found in certificate, or null if an email
-     *         address cannot be found in the certificate.
-     */
-
-    /**
      * Predicate, can new user automatically create EPerson. Checks
      * configuration value. You'll probably want this to be true to take
      * advantage of a Web certificate infrastructure with many more users than
@@ -343,34 +330,19 @@ public class OAuthAuthentication implements AuthenticationMethod
             String realm, HttpServletRequest request) throws SQLException
     {
 
-    	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
+//    	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
     	String email = (String)request.getSession().getAttribute("oauthemail");
     	
-    	if ((oauth_code == null) || (oauth_code.length() == 0))
+    	if ((email == null) || (email.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
-            log.info(LogManager.getHeader(context, "no_oauth_code",
-                    "type=no-code_oauthAuthentication352"));
+            log.info(LogManager.getHeader(context, "no_oauth_code", "type=no-code_oauthAuth 339"));
             return BAD_ARGS;
         }
     	else
     	{
 	    	try
 	        {
-//    	
-//				GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
-				// Trade the Request Token and Verifier for the Access Token
-//				System.out.println("Get user's OAuth credential...");
-//				OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-//				System.out.println("Credential is " + credential);
-//				
-//				// Now, get the user's profile (access token is retrieved behind the scenes)
-//				UserProfile userProfile = provider.getUserProfile(credential);
-//				System.out.println("The user's profile is:" + userProfile.getAttributes());
-//				
-//                // And it's valid - try and get an e-person
-//            	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
-//				System.out.println("EurekaAttributesEmail:" + email);
                 EPerson eperson = null;
                 if (email != null)
                 {
@@ -379,9 +351,8 @@ public class OAuthAuthentication implements AuthenticationMethod
                 }
                 if (eperson == null)
                 {
-                    // Cert is valid, but no record.
-                    if (email != null
-                            && canSelfRegister(context, request, null))
+                    // email is valid, but no record.
+                    if (email != null && canSelfRegister(context, request, null))
                     {
                         // Register the new user automatically
                         log.info(LogManager.getHeader(context, "autoregister",
@@ -425,7 +396,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                 { 
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
-                    System.out.println("successful authentication [oAuthAuthentication427]:" + eperson);
+                    System.out.println("AUTH SUCCESS [oAuthAuthentication400]: " + eperson);
                     return SUCCESS;
                 }
             }
@@ -456,7 +427,6 @@ public class OAuthAuthentication implements AuthenticationMethod
 			
 			System.out.println(oAuthGlobusRedirect + " oAuthGlobusRedirect url string");
 			provider.setCallbackUrl(oAuthGlobusRedirect);
-			//provider.setCallbackUrl(url.toString());
 			
 		} catch (Exception e) {
 			System.out.println("Error in Globus OAuth URL generation. Message = " + e.getMessage());
