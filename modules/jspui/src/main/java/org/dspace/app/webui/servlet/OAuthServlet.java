@@ -73,20 +73,9 @@ public class OAuthServlet extends DSpaceServlet
         }
     	else
     	{
-//			request.getSession().setAttribute("oauthcode", oauth_code);
+			request.getSession().setAttribute("oauthcode", oauth_code);
     		
-			GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
-			System.out.println("Get user's OAuth credential...");
-			OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-			System.out.println("CREDENTIAL" + credential);
-			
-			// Now, get the user's profile (access token is retrieved behind the scenes)
-			UserProfile userProfile = provider.getUserProfile(credential);
-			System.out.println("USER PROFILE: " + userProfile.getAttributes());
-			
-            // And it's valid - try and get an e-person
-        	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
-			request.getSession().setAttribute("oauthemail", email);
+
             
 //			EPerson eperson = null;
 //            if (email != null)
