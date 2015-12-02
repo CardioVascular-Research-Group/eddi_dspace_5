@@ -34,13 +34,12 @@ import org.scribe.up.profile.UserProfile;
 import org.scribe.model.Token;
 
 /**
- * oAuth authentication servlet. This is an
- * access point for oAuth that will not be 
- * implicit (i.e. not immediately performed
- * because the resource is being accessed via HTTP
+ * oAuth authentication servlet. This is an access point
+ * for Authenticating users via Globus oAuth authorization. 
  * 
  * @author Robert Tansley
  * @author Mark Diggory
+ * @author David Hopkins
  * @version $Revision$
  */
 public class OAuthServlet extends DSpaceServlet
@@ -55,7 +54,6 @@ public class OAuthServlet extends DSpaceServlet
             HttpServletResponse response) throws ServletException, IOException,
             SQLException, AuthorizeException
     {
-			
     	
     	String oauth_code = request.getParameter("code");
     	
@@ -76,60 +74,34 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 //			request.getSession().setAttribute("oauthcode", oauth_code);
-
+    		
 			GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
 			System.out.println("Get user's OAuth credential...");
 			OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-			System.out.println("Credential is " + credential);
+			System.out.println("CREDENTIAL" + credential);
 			
 			// Now, get the user's profile (access token is retrieved behind the scenes)
 			UserProfile userProfile = provider.getUserProfile(credential);
-			System.out.println("The user's profile is:" + userProfile.getAttributes());
+			System.out.println("USER PROFILE: " + userProfile.getAttributes());
 			
             // And it's valid - try and get an e-person
         	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
 			request.getSession().setAttribute("oauthemail", email);
-			System.out.println("EurekaAttributesEmail:" + email);
-            EPerson eperson = null;
-            if (email != null)
-            {
-                eperson = EPerson.findByEmail(context, email);
-				System.out.println("eperson:" + eperson);
-            }
-			
-			Context ctx = UIUtil.obtainContext(request);
-			
-            if (eperson == null){
-            	eperson = ctx.getCurrentUser();
-            }
-	    	System.out.println("Eperson [servlet85]:" + eperson);
+            
+//			EPerson eperson = null;
+//            if (email != null)
+//            {
+//                eperson = EPerson.findByEmail(context, email);
+//            }
+//			
+//            if (eperson == null){
+//    			Context ctx = UIUtil.obtainContext(request);
+//            	eperson = ctx.getCurrentUser();
+//            }
 
-            // Do we have an active e-person now?
-            if ((eperson != null) && eperson.canLogIn())
-            {
-		    	System.out.println("active eperson [servlet110]:" + request);
-                
-		    	// Everything OK - they should have already been logged in.
-                // resume previous request
-                Authenticate.resumeInterruptedRequest(request, response);
-
-                return;
-            }else{
-
-		    	System.out.println("no eperson [servlet119]:" + request);
-                
-		    	// Everything OK - they should have already been logged in.
-                // resume previous request
-                Authenticate.resumeInterruptedRequest(request, response);
-
-                return;
-            	
-            }
-
-            // If we get to here, no valid cert
-//            log.info(LogManager.getHeader(context, "failed_login",
-//                    "type=oauth_token-nv-token"));
-//            JSPManager.showJSP(request, response, "/login/no-valid-cert.jsp");
+            Authenticate.resumeInterruptedRequest(request, response);
+            
+            return;
     	}
     }
 }

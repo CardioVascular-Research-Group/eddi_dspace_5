@@ -57,18 +57,6 @@ import org.dspace.eperson.Group;
  * <b>Configuration:</b>
  * 
  * <pre>
- *   x509.keystore.path =
- * <em>
- * path to Java keystore file
- * </em>
- *   keystore.password =
- * <em>
- * password to access the keystore
- * </em>
- *   ca.cert =
- * <em>
- * path to certificate file for CA whose client certs to accept.
- * </em>
  *   autoregister =
  * <em>
  * &quot;true&quot; if E-Person is created automatically for unknown new users.
@@ -83,15 +71,6 @@ import org.dspace.eperson.Group;
  * membership in special groups.
  * </em>
  * </pre>
- * 
- * Only one of the "<code>keystore.path</code>" or "<code>ca.cert</code>"
- * options is required. If you supply a keystore, then all of the "trusted"
- * certificates in the keystore represent CAs whose client certificates will be
- * accepted. The <code>ca.cert</code> option only allows a single CA to be
- * named.
- * <p>
- * You can configure <em>both</em> a keystore and a CA cert, and both will be
- * used.
  * <p>
  * The <code>autoregister</code> configuration parameter determines what the
  * <code>canSelfRegister()</code> method returns. It also allows an EPerson
@@ -99,6 +78,7 @@ import org.dspace.eperson.Group;
  * acceptable but there is no corresponding EPerson.
  * 
  * @author Larry Stone
+ * @author David Hopkins
  * @version $Revision$
  */
 public class OAuthAuthentication implements AuthenticationMethod
@@ -335,8 +315,8 @@ public class OAuthAuthentication implements AuthenticationMethod
     	
     	if ((email == null) || (email.length() == 0))
         {
-    		// if oauth_code = null, construct url and redirect to globus login page here...
-            log.info(LogManager.getHeader(context, "no_oauth_code", "type=no-code_oauthAuth 339"));
+    		// if email = null, it has not been set in session by the servlet...
+            //log.info(LogManager.getHeader(context, "no_oauth_code", "type=no-code_oauthAuth 339"));
             return BAD_ARGS;
         }
     	else
@@ -347,7 +327,6 @@ public class OAuthAuthentication implements AuthenticationMethod
                 if (email != null)
                 {
                     eperson = EPerson.findByEmail(context, email);
-    				System.out.println("eperson:" + eperson);
                 }
                 if (eperson == null)
                 {
@@ -391,7 +370,6 @@ public class OAuthAuthentication implements AuthenticationMethod
                                     + ", canLogIn=false, rejecting."));
                     return BAD_ARGS;
                 }
-
                 else
                 { 
                     context.setCurrentUser(eperson);
