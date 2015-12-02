@@ -107,6 +107,10 @@ public class OAuthAuthentication implements AuthenticationMethod
         loginPageURL = ConfigurationManager
                 .getProperty("authentication-oauth", "chooser.uri");
     }
+    
+    private static boolean isValid(Context context){
+    	return true;    	
+    }
 
     /**
      * Predicate, can new user automatically create EPerson. Checks
@@ -310,10 +314,22 @@ public class OAuthAuthentication implements AuthenticationMethod
             String realm, HttpServletRequest request) throws SQLException
     {
 
-//    	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
-    	String email = (String)request.getSession().getAttribute("oauthemail");
+    	String oauth_code = (String)request.getSession().getAttribute("oauthcode");
+    	//String email = (String)request.getSession().getAttribute("oauthemail");
     	
-    	if ((email == null) || (email.length() == 0))
+		GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
+		System.out.println("Get user's OAuth credential...");
+		OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
+		System.out.println("CREDENTIAL" + credential);
+		
+		// Now, get the user's profile (access token is retrieved behind the scenes)
+		UserProfile userProfile = provider.getUserProfile(credential);
+		System.out.println("USER PROFILE: " + userProfile.getAttributes());
+		
+        // And it's valid
+    	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+
+    	if (((email == null) || (email.length() == 0)))
         {
     		// if email = null, it has not been set in session by the servlet...
             //log.info(LogManager.getHeader(context, "no_oauth_code", "type=no-code_oauthAuth 339"));
