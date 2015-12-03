@@ -43,7 +43,7 @@
 	<p class="alert alert-warning"><fmt:message key="jsp.register.new-user.info1"/></p>
 <%  } %>
 	
-	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param value="${oauthredir}" /></fmt:message></p>
+	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= oauthredir %></fmt:param></fmt:message><c:out value="${oauthredir}" /></p>
     
     <form class="form-horizontal" action="<%= request.getContextPath() %>/register" method="post">
 
