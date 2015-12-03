@@ -25,6 +25,7 @@
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
 <%@ page import="org.dspace.app.webui.servlet.RegisterServlet" %>
+<%@ page import="org.dspace.core.ConfigurationManager" %>
 
 <%
     boolean retry = (request.getAttribute("retry") != null);
