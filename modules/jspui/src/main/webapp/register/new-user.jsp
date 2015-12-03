@@ -29,6 +29,7 @@
 
 <%
     boolean retry = (request.getAttribute("retry") != null);
+	String oauthredir = ConfigurationManager.getProperty("authentication-oauth", "chooser.uri");
 %>
 
 <dspace:layout style="submission" titlekey="jsp.register.new-user.title">
@@ -42,7 +43,7 @@
 	<p class="alert alert-warning"><fmt:message key="jsp.register.new-user.info1"/></p>
 <%  } %>
 
-	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= ConfigurationManager.getProperty("authentication-oauth", "chooser.uri") %></fmt:param></fmt:message></p>
+	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= oauthredir %></fmt:param></fmt:message></p>
     
     <form class="form-horizontal" action="<%= request.getContextPath() %>/register" method="post">
 
