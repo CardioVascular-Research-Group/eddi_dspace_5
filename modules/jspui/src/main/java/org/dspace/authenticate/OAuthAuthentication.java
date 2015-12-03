@@ -324,8 +324,28 @@ public class OAuthAuthentication implements AuthenticationMethod
 		OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
 		//System.out.println("CREDENTIAL" + credential);
 		
-		// Now, get the user's profile (access token is retrieved behind the scenes)
-		UserProfile userProfile = provider.getUserProfile(credential);
+		UserProfile userProfile = new UserProfile();
+		try
+        {
+			// Now, get the user's profile (access token is retrieved behind the scenes)
+			 userProfile = provider.getUserProfile(credential);
+			 if(userProfile == null)
+			 {
+				 log.warn(LogManager
+                         .getHeader(context, "authenticate",
+                                 "type=access_token, no eperson & cannot auto-register"));
+			 }
+			 else
+             { 
+				 log.info(LogManager.getHeader(context, "userProfile",
+	                     "from=OAuth, userProfile=" + userProfile));
+             }
+	    }
+	    catch (Exception ee)
+	    {
+	        log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
+	                ""), ee);
+	    }
 		//System.out.println("USER PROFILE: " + userProfile.getAttributes());
 		
         // And it's valid
@@ -401,7 +421,6 @@ public class OAuthAuthentication implements AuthenticationMethod
                         ""), ce);
             }
     	}
-
         return BAD_ARGS;
     }
 
@@ -427,7 +446,6 @@ public class OAuthAuthentication implements AuthenticationMethod
 			System.out.println("Error in Globus OAuth URL generation. Message = " + e.getMessage());
 		}
 		return provider;
-    	
     }
     /**
      * Returns URL of password-login servlet.
