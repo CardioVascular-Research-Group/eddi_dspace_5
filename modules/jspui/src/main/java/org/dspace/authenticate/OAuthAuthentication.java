@@ -351,6 +351,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 			request.getSession().setAttribute("oauthcode", null);
 			log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
 	                ""), ee);
+            return BAD_ARGS;
 	    }
 		
     	if (email == null || (email.length() == 0))
