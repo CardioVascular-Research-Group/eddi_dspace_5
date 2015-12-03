@@ -42,8 +42,8 @@
     <%-- <p><strong>The e-mail address you entered was invalid.</strong>  Please try again.</strong></p> --%>
 	<p class="alert alert-warning"><fmt:message key="jsp.register.new-user.info1"/></p>
 <%  } %>
-
-	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= oauthredir %></fmt:param></fmt:message></p>
+	
+	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param value="<%= oauthredir %>" /></fmt:message></p>
     
     <form class="form-horizontal" action="<%= request.getContextPath() %>/register" method="post">
 
