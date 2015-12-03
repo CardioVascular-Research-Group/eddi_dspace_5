@@ -74,7 +74,6 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 			request.getSession().setAttribute("oauthcode", oauth_code);
-
             Authenticate.resumeInterruptedRequest(request, response);
             
             return;

@@ -325,6 +325,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 		//System.out.println("CREDENTIAL" + credential);
 		
 		UserProfile userProfile = new UserProfile();
+		String email = null;
 		try
         {
 			// Now, get the user's profile (access token is retrieved behind the scenes)
@@ -340,22 +341,17 @@ public class OAuthAuthentication implements AuthenticationMethod
              { 
 				 log.info(LogManager.getHeader(context, "userProfile",
 	                     "from=OAuth, userProfile=" + userProfile));
+				 email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+				 System.out.println("USER PROFILE: " + userProfile.getAttributes());
              }
 	    }
 	    catch (Exception ee)
 	    {
 	    	System.out.println("userProfile creation failure -- catch");
+			request.getSession().setAttribute("oauthcode", null);
 			log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
 	                ""), ee);
 	    }
-		//System.out.println("USER PROFILE: " + userProfile.getAttributes());
-		
-        // And it's valid
-		String email = null;
-		if (userProfile != null)
-        {
-		email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
-        }
 		
     	if (email == null || (email.length() == 0))
         {
