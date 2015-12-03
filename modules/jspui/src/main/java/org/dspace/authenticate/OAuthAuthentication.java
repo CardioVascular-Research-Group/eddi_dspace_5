@@ -108,10 +108,6 @@ public class OAuthAuthentication implements AuthenticationMethod
                 .getProperty("authentication-oauth", "chooser.uri");
     }
     
-    private static boolean isValid(Context context){
-    	return true;    	
-    }
-
     /**
      * Predicate, can new user automatically create EPerson. Checks
      * configuration value. You'll probably want this to be true to take
@@ -190,8 +186,8 @@ public class OAuthAuthentication implements AuthenticationMethod
     private void setSpecialGroupsFlag(HttpServletRequest request, String email)
     {
         String emailDomain = null;
-//        emailDomain = (String) request
-//                .getAttribute("authentication.x509.emaildomain");
+        emailDomain = (String) request
+                .getAttribute("authentication.oauth.emaildomain");
 
         HttpSession session = request.getSession(true);
 
@@ -292,16 +288,16 @@ public class OAuthAuthentication implements AuthenticationMethod
 
     
     /**
-     * oAuth authentication. 
+     * Globus oAuth authentication. 
      * <ul>
-     * <li>If the certificate is valid, and corresponds to an existing EPerson,
+     * <li>If the access_token is valid, and corresponds to an existing EPerson,
      * and the user is allowed to login, return success.</li>
      * <li>If the user is matched but is not allowed to login, it fails.</li>
-     * <li>If the certificate is valid, but there is no corresponding EPerson,
-     * the <code>"authentication.x509.autoregister"</code> configuration
+     * <li>If the access_token is valid, but there is no corresponding EPerson,
+     * the <code>"authentication.oauth.autoregister"</code> configuration
      * parameter is checked (via <code>canSelfRegister()</code>)
      * <ul>
-     * <li>If it's true, a new EPerson record is created for the certificate,
+     * <li>If it's true, a new EPerson record is created for the access_token,
      * and the result is success.</li>
      * <li>If it's false, return that the user was unknown.</li>
      * </ul>
@@ -326,19 +322,18 @@ public class OAuthAuthentication implements AuthenticationMethod
 		GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
 		System.out.println("Get user's OAuth credential...");
 		OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-		System.out.println("CREDENTIAL" + credential);
+		//System.out.println("CREDENTIAL" + credential);
 		
 		// Now, get the user's profile (access token is retrieved behind the scenes)
 		UserProfile userProfile = provider.getUserProfile(credential);
-		System.out.println("USER PROFILE: " + userProfile.getAttributes());
+		//System.out.println("USER PROFILE: " + userProfile.getAttributes());
 		
         // And it's valid
     	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
 
     	if (((email == null) || (email.length() == 0)))
         {
-    		// if email = null, it has not been set in session by the servlet...
-            //log.info(LogManager.getHeader(context, "no_oauth_code", "type=no-code_oauthAuth 339"));
+            log.info(LogManager.getHeader(context, "no_email", "type=no-code_oauthAuth 336"));
             return BAD_ARGS;
         }
     	else
@@ -379,7 +374,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                         log
                                 .warn(LogManager
                                         .getHeader(context, "authenticate",
-                                                "type=cert_but_no_record, cannot auto-register"));
+                                                "type=access_token, no eperson & cannot auto-register"));
                         return NO_SUCH_USER;
                     }
                 }
@@ -396,7 +391,7 @@ public class OAuthAuthentication implements AuthenticationMethod
                 { 
                     context.setCurrentUser(eperson);
                     setSpecialGroupsFlag(request, email);
-                    System.out.println("AUTH SUCCESS [oAuthAuthentication400]: " + eperson);
+                    //System.out.println("AUTH SUCCESS [oAuthAuthentication396]: " + eperson);
                     return SUCCESS;
                 }
             }

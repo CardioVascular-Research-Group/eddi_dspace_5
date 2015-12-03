@@ -74,19 +74,6 @@ public class OAuthServlet extends DSpaceServlet
     	else
     	{
 			request.getSession().setAttribute("oauthcode", oauth_code);
-    		
-
-            
-//			EPerson eperson = null;
-//            if (email != null)
-//            {
-//                eperson = EPerson.findByEmail(context, email);
-//            }
-//			
-//            if (eperson == null){
-//    			Context ctx = UIUtil.obtainContext(request);
-//            	eperson = ctx.getCurrentUser();
-//            }
 
             Authenticate.resumeInterruptedRequest(request, response);
             
