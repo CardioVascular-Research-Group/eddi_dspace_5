@@ -41,29 +41,22 @@
 	<p class="alert alert-warning"><fmt:message key="jsp.register.new-user.info1"/></p>
 <%  } %>
 
-    <%-- <p>If you've never logged on to DSpace before, please enter your e-mail
-    address in the box below and click "Register".</p> --%>
-	<p class="alert"><fmt:message key="jsp.register.new-user.info2">
-        <fmt:param><%= request.getContextPath() %>/oauth-login</fmt:param>
-    </fmt:message></p>
+	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= ConfigurationManager.getProperty("authentication-oauth", "chooser.uri") %></fmt:param></fmt:message></p>
     
     <form class="form-horizontal" action="<%= request.getContextPath() %>/register" method="post">
 
         <input type="hidden" name="step" value="<%= RegisterServlet.ENTER_EMAIL_PAGE %>"/>
 
-
-                            <%-- <td class="standard"><strong>E-mail Address:</strong></td> --%>
-					    <div class="form-group">
-            				<label class="col-md-offset-3 col-md-2 control-label" for="temail"><fmt:message key="jsp.register.new-user.email.field"/></label>
-                            <div class="col-md-3"><input class="form-control" type="text" name="email" id="temail" /></div>
-                        </div>
-                        <div class="row col-md-offset-5">
-                                <%-- <input type="submit" name="submit" value="Register"> --%>
-							<input class="btn btn-default col-md-4" type="submit" name="submit" value="<fmt:message key="jsp.register.new-user.register.button"/>" />
-						</div>
+	    <div class="form-group">
+        				<label class="col-md-offset-3 col-md-2 control-label" for="temail"><fmt:message key="jsp.register.new-user.email.field"/></label>
+                        <div class="col-md-3"><input class="form-control" type="text" name="email" id="temail" /></div>
+                    </div>
+                    <div class="row col-md-offset-5">
+                            <%-- <input type="submit" name="submit" value="Register"> --%>
+			<input class="btn btn-default col-md-4" type="submit" name="submit" value="<fmt:message key="jsp.register.new-user.register.button"/>" />
+		</div>
     </form>
-    <%-- <p>If you or your department are interested in registering with DSpace, please
-    contact the DSpace site administrators.</p> --%>
+
     <br/>
 	<%-- <div class="alert alert-info"><fmt:message key="jsp.register.new-user.info3"/></div> --%>
 
