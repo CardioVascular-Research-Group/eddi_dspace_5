@@ -331,6 +331,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 			 userProfile = provider.getUserProfile(credential);
 			 if(userProfile == null)
 			 {
+				 System.out.println("userProfile creation failure");
 				 log.warn(LogManager
                          .getHeader(context, "authenticate",
                                  "type=access_token, no eperson & cannot auto-register"));
@@ -343,15 +344,20 @@ public class OAuthAuthentication implements AuthenticationMethod
 	    }
 	    catch (Exception ee)
 	    {
-	        log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
+	    	System.out.println("userProfile creation failure -- catch");
+			log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
 	                ""), ee);
 	    }
 		//System.out.println("USER PROFILE: " + userProfile.getAttributes());
 		
         // And it's valid
-    	String email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
-
-    	if (((email == null) || (email.length() == 0)))
+		String email = null;
+		if (userProfile != null)
+        {
+		email = userProfile.getAttributes().get(EurekaAttributesDefinition.EMAIL).toString();
+        }
+		
+    	if (email == null || (email.length() == 0))
         {
             log.info(LogManager.getHeader(context, "no_email", "type=no-code_oauthAuth 336"));
             return BAD_ARGS;
