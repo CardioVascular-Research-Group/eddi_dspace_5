@@ -347,7 +347,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 	    }
 	    catch (Exception ee)
 	    {
-	    	System.out.println("userProfile creation failure -- catch");
+	    	System.out.println("userProfile creation failure");
 			request.getSession().setAttribute("oauthcode", null);
 			log.warn(LogManager.getHeader(context, "failed to get user profile & access token",
 	                ""), ee);
