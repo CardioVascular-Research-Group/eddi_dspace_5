@@ -25,11 +25,9 @@
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
 <%@ page import="org.dspace.app.webui.servlet.RegisterServlet" %>
-<%@ page import="org.dspace.core.ConfigurationManager" %>
 
 <%
     boolean retry = (request.getAttribute("retry") != null);
-	String oauthredir = ConfigurationManager.getProperty("authentication-oauth", "chooser.uri");
 %>
 
 <dspace:layout style="submission" titlekey="jsp.register.new-user.title">
@@ -43,7 +41,7 @@
 	<p class="alert alert-warning"><fmt:message key="jsp.register.new-user.info1"/></p>
 <%  } %>
 	
-	<p class="alert"><fmt:message key="jsp.register.new-user.info2"><fmt:param><%= oauthredir %></fmt:param></fmt:message><c:out value="${oauthredir}" /></p>
+	<p class="alert"><fmt:message key="jsp.register.new-user.info2"/></p>
     
     <form class="form-horizontal" action="<%= request.getContextPath() %>/register" method="post">
 
