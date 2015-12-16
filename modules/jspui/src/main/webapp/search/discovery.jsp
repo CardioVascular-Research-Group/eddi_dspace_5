@@ -457,17 +457,21 @@ else if( qResults != null)
 	        qResults.getStart()+qResults.getMaxResults():qResults.getTotalSearchResults();
 %>
     <%-- <p align="center">Results <//%=qResults.getStart()+1%>-<//%=qResults.getStart()+qResults.getHitHandles().size()%> of --%>
-	<h2 class="info"><fmt:message key="jsp.search.results.results">
+	<div class="alert alert-info"><fmt:message key="jsp.search.results.results">
         <fmt:param><%=qResults.getStart()+1%></fmt:param>
         <fmt:param><%=lastHint%></fmt:param>
         <fmt:param><%=qResults.getTotalSearchResults()%></fmt:param>
         <fmt:param><%=(float) qResults.getSearchTime() / 1000%></fmt:param>
-    </fmt:message></h2>
-    <ul class="links">
+    </fmt:message></div>
+    <ul class="links pagination pull-left">
 <%
 if (pageFirst != pageCurrent)
 {
-    %><li><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></li><%
+    %><li><span><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></span></li><%
+}
+else
+{
+    %><li class="disabled"><span><fmt:message key="jsp.search.general.previous" /></span></li><%
 }
 
 if (pageFirst != 1)
@@ -483,7 +487,7 @@ for( long q = pageFirst; q <= pageLast; q++ )
 
     if( q == pageCurrent )
     {
-        myLink = "<li class=\"current-page-link\">" + q + "</li>";
+        myLink = "<li class=\"current-page-link\"><span>" + q + "</span></li>";
     }
     else
     {
@@ -514,27 +518,30 @@ if (pageTotal > pageCurrent)
 </div>
 <div class="discovery-result-results">
 <% if (communities.length > 0 ) { %>
-    <%-- <h3>Community Hits:</h3> --%>
-    <h3><fmt:message key="jsp.search.results.comhits"/></h3>
+    <div class="panel panel-info">
+    <div class="panel-heading"><fmt:message key="jsp.search.results.comhits"/></div>
     <dspace:communitylist  communities="<%= communities %>" />
+    </div>
 <% } %>
 
 <% if (collections.length > 0 ) { %>
-    <%-- <h3>Collection hits:</h3> --%>
-    <h3><fmt:message key="jsp.search.results.colhits"/></h3>
+    <div class="panel panel-info">
+    <div class="panel-heading"><fmt:message key="jsp.search.results.colhits"/></div>
     <dspace:collectionlist collections="<%= collections %>" />
+    </div>
 <% } %>
 
 <% if (items.length > 0) { %>
-    <%-- <h3>Item hits:</h3> --%>
-    <h3><fmt:message key="jsp.search.results.itemhits"/></h3>
+    <div class="panel panel-info">
+    <div class="panel-heading"><fmt:message key="jsp.search.results.itemhits"/></div>
     <dspace:itemlist items="<%= items %>" authorLimit="<%= etAl %>" />
+    </div>
 <% } %>
 </div>
 <%-- if the result page is enought long... --%>
 <% if ((communities.length + collections.length + items.length) > 10) {%>
 <%-- show again the navigation info/links --%>
-<div class="discovery-result-pagination">
+<div class="discovery-result-pagination row container">
     <%-- <p align="center">Results <//%=qResults.getStart()+1%>-<//%=qResults.getStart()+qResults.getHitHandles().size()%> of --%>
 	<p class="info"><fmt:message key="jsp.search.results.results">
         <fmt:param><%=qResults.getStart()+1%></fmt:param>
@@ -546,7 +553,7 @@ if (pageTotal > pageCurrent)
 <%
 if (pageFirst != pageCurrent)
 {
-    %><li><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></li><%
+    %><li><span><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></span></li><%
 }
 
 if (pageFirst != 1)
@@ -562,7 +569,7 @@ for( long q = pageFirst; q <= pageLast; q++ )
 
     if( q == pageCurrent )
     {
-        myLink = "<li class=\"current-page-link\">" + q + "</li>";
+        myLink = "<li class=\"current-page-link\"><span>" + q + "</span></li>";
     }
     else
     {
@@ -592,7 +599,6 @@ if (pageTotal > pageCurrent)
 <!-- give a content to the div -->
 </div>
 <% } %>
-</div>
 <% } %>
 <dspace:sidebar>
 <%
@@ -631,7 +637,7 @@ if (pageTotal > pageCurrent)
 	if (brefine) {
 %>
 
-<h3 class="facets"><fmt:message key="jsp.search.facet.refine" /></h3>
+<h3><fmt:message key="jsp.search.facet.refine" /></h3>
 <div id="facets" class="facetsBox">
 
 <%
@@ -648,9 +654,9 @@ if (pageTotal > pageCurrent)
 	    int limit = facetConf.getFacetLimit()+1;
 	    
 	    String fkey = "jsp.search.facet.refine."+f;
-	    %><div id="facet_<%= f %>" class="facet">
-	    <span class="facetName"><fmt:message key="<%= fkey %>" /></span>
-	    <ul><%
+	    %><div id="facet_<%= f %>" class="facet panel panel-success">
+	    <div class="panel-heading"><fmt:message key="<%= fkey %>" /></div>
+	    <ul class="list-group"><%
 	    int idx = 1;
 	    int currFp = UIUtil.getIntParameter(request, f+"_page");
 	    if (currFp < 0)
@@ -659,7 +665,7 @@ if (pageTotal > pageCurrent)
 	    }
 	    if (currFp > 0)
 	    {
-	        %><li class="facet-previous"><a href="<%= request.getContextPath()
+	        %><li class="facet-previous"><span><a href="<%= request.getContextPath()
 	                + (searchScope!=""?"/handle/"+searchScope:"")
 	                + "/simple-search?query="
 	                + URLEncoder.encode(query,"UTF-8")
@@ -668,14 +674,14 @@ if (pageTotal > pageCurrent)
 	                + "&amp;rpp=" + rpp
 	                + httpFilters
 	                + "&amp;etal=" + etAl  
-	                + "&amp;"+f+"_page="+(currFp-1) %>"><fmt:message key="jsp.search.facet.refine.previous" /></a></li>
+	                + "&amp;"+f+"_page="+(currFp-1) %>"><fmt:message key="jsp.search.facet.refine.previous" /></a></span></li>
             <%
 	    }
 	    for (FacetResult fvalue : facet)
 	    { 
 	        if (idx == limit)
 	        {
-	            %><li class="facet-next"><a href="<%= request.getContextPath()
+	            %><li class="list-group-item facet-next"><span style="visibility: hidden;">.</span> <span class="pull-right"><a href="<%= request.getContextPath()
 	            + (searchScope!=""?"/handle/"+searchScope:"")
                 + "/simple-search?query="
                 + URLEncoder.encode(query,"UTF-8")
@@ -684,13 +690,13 @@ if (pageTotal > pageCurrent)
                 + "&amp;rpp=" + rpp
                 + httpFilters
                 + "&amp;etal=" + etAl  
-                + "&amp;"+f+"_page="+(currFp+1) %>"><fmt:message key="jsp.search.facet.refine.next" /></a></li>
+                + "&amp;"+f+"_page="+(currFp+1) %>"><fmt:message key="jsp.search.facet.refine.next" /></a></span></li>
 	            <%
 	            idx++;
 	        }
 	        else if(!appliedFilterQueries.contains(f+"::"+fvalue.getFilterType()+"::"+fvalue.getAsFilterQuery()))
 	        {
-	        %><li><a href="<%= request.getContextPath()
+	        %><li class="list-group-item"><span class="badge"><%= fvalue.getCount()+"</span><a href="+ request.getContextPath()
                 + (searchScope!=""?"/handle/"+searchScope:"")
                 + "/simple-search?query="
                 + URLEncoder.encode(query,"UTF-8")
@@ -703,7 +709,7 @@ if (pageTotal > pageCurrent)
                 + "&amp;filterquery="+URLEncoder.encode(fvalue.getAsFilterQuery(),"UTF-8")
                 + "&amp;filtertype="+URLEncoder.encode(fvalue.getFilterType(),"UTF-8") %>"
                 title="<fmt:message key="jsp.search.facet.narrow"><fmt:param><%=fvalue.getDisplayedValue() %></fmt:param></fmt:message>">
-                <%= StringUtils.abbreviate(fvalue.getDisplayedValue(),32) + " (" + fvalue.getCount()+")" %></a></li><%
+                <%= StringUtils.abbreviate(fvalue.getDisplayedValue(),32) %></a></li><%
                 idx++;
 	        }
 	        if (idx > limit)
@@ -715,7 +721,7 @@ if (pageTotal > pageCurrent)
 	}
 
 %>
-
+</div>
 </div>
 <% } %>
 </dspace:sidebar>

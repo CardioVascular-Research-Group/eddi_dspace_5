@@ -136,7 +136,7 @@
 						{
 							String key = "jsp.search.advanced.type." + index;
 					%>
-							<option value="<%= index %>" <%= field2.equals(index) ? "selected=\"selected\"" : "" %>><fmt:message key="<%= key %>"/></option>
+							<option value="<%= StringEscapeUtils.escapeHtml(index) %>" <%= field2.equals(index) ? "selected=\"selected\"" : "" %>><fmt:message key="<%= key %>"/></option>
 					<%
 						}
 					%>
@@ -162,7 +162,7 @@
 						{
 							String key = "jsp.search.advanced.type." + index;
 					%>
-							<option value="<%= index %>" <%= field3.equals(index) ? "selected=\"selected\"" : "" %>><fmt:message key="<%= key %>"/></option>
+							<option value="<%= StringEscapeUtils.escapeHtml(index) %>" <%= field3.equals(index) ? "selected=\"selected\"" : "" %>><fmt:message key="<%= key %>"/></option>
 					<%
 						}
 					%>
