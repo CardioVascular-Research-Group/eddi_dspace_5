@@ -665,7 +665,7 @@ if (pageTotal > pageCurrent)
 	    }
 	    if (currFp > 0)
 	    {
-	        %><li class="facet-previous"><span><a href="<%= request.getContextPath()
+	        %><li class="facet-previous list-group-item"><span style="visibility: hidden;">.</span><a href="<%= request.getContextPath()
 	                + (searchScope!=""?"/handle/"+searchScope:"")
 	                + "/simple-search?query="
 	                + URLEncoder.encode(query,"UTF-8")
@@ -674,7 +674,7 @@ if (pageTotal > pageCurrent)
 	                + "&amp;rpp=" + rpp
 	                + httpFilters
 	                + "&amp;etal=" + etAl  
-	                + "&amp;"+f+"_page="+(currFp-1) %>"><fmt:message key="jsp.search.facet.refine.previous" /></a></span></li>
+	                + "&amp;"+f+"_page="+(currFp-1) %>"><fmt:message key="jsp.search.facet.refine.previous" /></a></li>
             <%
 	    }
 	    for (FacetResult fvalue : facet)
