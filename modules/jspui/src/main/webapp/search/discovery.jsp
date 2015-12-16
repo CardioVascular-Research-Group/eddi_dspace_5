@@ -24,7 +24,6 @@
   -   appliedFilters   - The list of applied filters (user input or facet)
   -
   -   search.error     - a flag to say that an error has occurred
-  -   spellcheck	   - the suggested spell check query (if any)
   -   qResults		   - the discovery results
   -   items            - the results.  An array of Items, most relevant first
   -   communities      - results, Community[]
@@ -49,6 +48,7 @@
 <%@page import="org.dspace.discovery.DiscoverResult"%>
 <%@page import="org.dspace.content.DSpaceObject"%>
 <%@page import="java.util.List"%>
+<%@ page import="org.apache.commons.lang.StringEscapeUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
@@ -86,7 +86,7 @@
     String ascSelected = (SortOption.ASCENDING.equalsIgnoreCase(order)   ? "selected=\"selected\"" : "");
     String descSelected = (SortOption.DESCENDING.equalsIgnoreCase(order) ? "selected=\"selected\"" : "");
     String httpFilters ="";
-	String spellCheckQuery = (String) request.getAttribute("spellcheck");
+    String spellCheckQuery = (String) request.getAttribute("spellcheck");
     List<DiscoverySearchFilter> availableFilters = (List<DiscoverySearchFilter>) request.getAttribute("availableFilters");
 	List<String[]> appliedFilters = (List<String[]>) request.getAttribute("appliedFilters");
 	List<String> appliedFilterQueries = (List<String>) request.getAttribute("appliedFilterQueries");
@@ -253,8 +253,6 @@
 		</div>
 <% if (availableFilters.size() > 0) { %>
 		<div class="discovery-search-filters panel-body">
-		<h5><fmt:message key="jsp.search.filter.heading" /></h5>
-		<p class="discovery-search-filters-hint"><fmt:message key="jsp.search.filter.hint" /></p>
 		<form action="simple-search" method="get">
 		<input type="hidden" value="<%= Utils.addEntities(searchScope) %>" name="location" />
 		<input type="hidden" value="<%= Utils.addEntities(query) %>" name="query" />
@@ -271,6 +269,8 @@
 					idx++;
 				}
 		} %>
+		<span class="discovery-search-filters-heading"><fmt:message key="jsp.search.filter.heading" /></span>
+		<span class="discovery-search-filters-hint"><fmt:message key="jsp.search.filter.hint" /></span>
 		<select id="filtername" name="filtername">
 		<%
 			for (DiscoverySearchFilter searchFilter : availableFilters)
@@ -676,7 +676,7 @@ if (pageTotal > pageCurrent)
 	    }
 	    for (FacetResult fvalue : facet)
 	    { 
-	        if (idx != limit && !appliedFilterQueries.contains(f+"::"+fvalue.getFilterType()+"::"+fvalue.getAsFilterQuery()))
+	        if (idx == limit)
 	        {
 	        %><li class="list-group-item"><span class="badge"><%= fvalue.getCount() %></span> <a href="<%= request.getContextPath()
                 + (!searchScope.equals("")?"/handle/"+searchScope:"")
@@ -691,7 +691,7 @@ if (pageTotal > pageCurrent)
                 + "&amp;filterquery="+URLEncoder.encode(fvalue.getAsFilterQuery(),"UTF-8")
                 + "&amp;filtertype="+URLEncoder.encode(fvalue.getFilterType(),"UTF-8") %>"
                 title="<fmt:message key="jsp.search.facet.narrow"><fmt:param><%=fvalue.getDisplayedValue() %></fmt:param></fmt:message>">
-                <%= StringUtils.abbreviate(fvalue.getDisplayedValue(),36) %></a></li><%
+                <%= StringUtils.abbreviate(fvalue.getDisplayedValue(),32) %></a></li><%
                 idx++;
 	        }
 	        if (idx > limit)
@@ -733,7 +733,7 @@ if (pageTotal > pageCurrent)
 	}
 
 %>
-
+</div>
 </div>
 </div>
 <% } %>
