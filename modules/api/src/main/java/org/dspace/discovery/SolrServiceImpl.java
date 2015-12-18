@@ -626,7 +626,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
         SolrQuery query = new SolrQuery();
         query.setQuery(HANDLE_FIELD + ":" + handle);
         // Specify that we ONLY want the LAST_INDEXED_FIELD returned in the field list (fl)
-        query.setFields(LAST_INDEXED_FIELD);
+        query.setParam(CommonParams.FL, LAST_INDEXED_FIELD);
         QueryResponse rsp;
 
         try {
