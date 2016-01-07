@@ -554,13 +554,13 @@ if (pageTotal > pageCurrent)
 <%-- show again the navigation info/links --%>
 <div class="discovery-result-pagination row container">
     <%-- <p align="center">Results <//%=qResults.getStart()+1%>-<//%=qResults.getStart()+qResults.getHitHandles().size()%> of --%>
-	<p class="info"><fmt:message key="jsp.search.results.results">
+	<p class="alert alert-info"><fmt:message key="jsp.search.results.results">
         <fmt:param><%=qResults.getStart()+1%></fmt:param>
         <fmt:param><%=lastHint%></fmt:param>
         <fmt:param><%=qResults.getTotalSearchResults()%></fmt:param>
         <fmt:param><%=(float) qResults.getSearchTime() / 1000 %></fmt:param>
     </fmt:message></p>
-    <ul class="links">
+    <ul class="links pagination pull-left">
 <%
 if (pageFirst != pageCurrent)
 {
