@@ -19,6 +19,7 @@
             <Filter ref="defaultFilter" />
 
             <Format ref="oaidc"/>
+            <Format ref="oaidcecg"/>
             <Format ref="mets"/>
             <Format ref="xoai"/>
             <Format ref="didl"/>
@@ -52,6 +53,7 @@
             <Set ref="driverSet"/>
             <!-- Metadata Formats -->
             <Format ref="oaidc"/>
+            <Format ref="oaidcecg"/>
             <Format ref="mets"/>
             <Format ref="didl"/>
             <Description>
@@ -77,6 +79,7 @@
             <Set ref="openaireSet"/>
             <!-- Metadata Formats -->
             <Format ref="oaidc"/>
+            <Format ref="oaidcecg"/>
             <Format ref="mets"/>
             <Description>
                 This contexts complies with OpenAIRE rules.
@@ -91,6 +94,12 @@
             <XSLT>metadataFormats/oai_dc.xsl</XSLT>
             <Namespace>http://www.openarchives.org/OAI/2.0/oai_dc/</Namespace>
             <SchemaLocation>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</SchemaLocation>
+        </Format>
+        <Format id="oaidcecg">
+            <Prefix>oai_dc_ecg</Prefix>
+            <XSLT>metadataFormats/oai_dc_ecg.xsl</XSLT>
+            <Namespace>http://www.cvrgrid.org/files/oai_dc_ecg/</Namespace>
+            <SchemaLocation>http://www.cvrgrid.org/files/oai_dc_ecg/oai_dc_ecg.xsd</SchemaLocation>
         </Format>
         <Format id="mets">
             <Prefix>mets</Prefix>
