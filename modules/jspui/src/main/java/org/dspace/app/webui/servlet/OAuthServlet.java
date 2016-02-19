@@ -10,6 +10,8 @@ package org.dspace.app.webui.servlet;
 import java.io.IOException;
 import java.security.cert.X509Certificate;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -54,21 +56,22 @@ public class OAuthServlet extends DSpaceServlet
             HttpServletResponse response) throws ServletException, IOException,
             SQLException, AuthorizeException
     {
-
-    	Enumeration request_objects = request.getParameterNames();
+    	
     	StringBuilder stringBuilder = new StringBuilder();
     	String fullRequestList;
-    	for (request_objects.values()) {
-    		  stringBuilder.append = java.util.Arrays.asList(request_objects);
+    	Map m = request.getParameterMap();
+    	Iterator itr = m.keySet().iterator();
+    	while (itr.hasNext()) {
+    		  stringBuilder.append(itr.next().toString());
     		}
-    	String finalString = stringBuilder.toString();
+    	fullRequestList = stringBuilder.toString();
     	String oauth_code = request.getParameter("code");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
             log.info(LogManager.getHeader(context, "no_oauth_code",
-                    "type=no-oauth-code-globus-redirect --- " + request_objects + " --- "));
+                    "type=no-oauth-code-globus-redirect --- " + fullRequestList + " --- "));
             String globusRedirect = ConfigurationManager
                     .getProperty("authentication-oauth", "oa.globusredirect");
             String globusLogin = ConfigurationManager
