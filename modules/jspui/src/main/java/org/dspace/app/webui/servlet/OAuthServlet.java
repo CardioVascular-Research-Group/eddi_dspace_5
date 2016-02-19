@@ -54,14 +54,15 @@ public class OAuthServlet extends DSpaceServlet
             HttpServletResponse response) throws ServletException, IOException,
             SQLException, AuthorizeException
     {
-    	
+
+    	String request_objects = request.getParameterNames().toString();
     	String oauth_code = request.getParameter("code");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
             log.info(LogManager.getHeader(context, "no_oauth_code",
-                    "type=no-oauth-code-globus-redirect"));
+                    "type=no-oauth-code-globus-redirect --- " + request_objects + " --- "));
             String globusRedirect = ConfigurationManager
                     .getProperty("authentication-oauth", "oa.globusredirect");
             String globusLogin = ConfigurationManager
