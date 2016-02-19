@@ -12,6 +12,7 @@ import java.security.cert.X509Certificate;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Iterator;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -59,11 +60,19 @@ public class OAuthServlet extends DSpaceServlet
     	
     	StringBuilder stringBuilder = new StringBuilder();
     	String fullRequestList;
+    	String fullAttributesList = "";
     	Map m = request.getParameterMap();
     	Iterator itr = m.keySet().iterator();
     	while (itr.hasNext()) {
+    		  System.out.println(itr.next().toString());
     		  stringBuilder.append(itr.next().toString());
     		}
+
+    	Enumeration n = request.getAttributeNames();
+    	while (n.hasMoreElements()){
+    		System.out.println(n.nextElement());
+    	}
+    	
     	fullRequestList = stringBuilder.toString();
     	String oauth_code = request.getParameter("code");
     	
@@ -71,7 +80,7 @@ public class OAuthServlet extends DSpaceServlet
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
             log.info(LogManager.getHeader(context, "no_oauth_code",
-                    "type=no-oauth-code-globus-redirect --- " + fullRequestList + " --- "));
+                    "type=no-oauth-code-globus-redirect --- " + fullRequestList + fullAttributesList + " --- "));
             String globusRedirect = ConfigurationManager
                     .getProperty("authentication-oauth", "oa.globusredirect");
             String globusLogin = ConfigurationManager
