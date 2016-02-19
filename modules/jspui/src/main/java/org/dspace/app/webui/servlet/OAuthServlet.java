@@ -55,7 +55,13 @@ public class OAuthServlet extends DSpaceServlet
             SQLException, AuthorizeException
     {
 
-    	String request_objects = request.getParameterNames().toString();
+    	Enumeration request_objects = request.getParameterNames();
+    	StringBuilder stringBuilder = new StringBuilder();
+    	String fullRequestList;
+    	for (request_objects.values()) {
+    		  stringBuilder.append = java.util.Arrays.asList(request_objects);
+    		}
+    	String finalString = stringBuilder.toString();
     	String oauth_code = request.getParameter("code");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
