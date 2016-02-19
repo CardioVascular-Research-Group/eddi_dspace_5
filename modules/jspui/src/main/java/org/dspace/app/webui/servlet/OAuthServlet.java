@@ -58,29 +58,29 @@ public class OAuthServlet extends DSpaceServlet
             SQLException, AuthorizeException
     {
     	
-    	StringBuilder stringBuilder = new StringBuilder();
-    	String fullRequestList;
-    	String fullAttributesList = "";
-    	Map m = request.getParameterMap();
-    	Iterator itr = m.keySet().iterator();
-    	while (itr.hasNext()) {
-    		  System.out.println(itr.next().toString());
-    		  stringBuilder.append(itr.next().toString());
-    		}
-
-    	Enumeration n = request.getAttributeNames();
-    	while (n.hasMoreElements()){
-    		System.out.println(n.nextElement());
-    	}
-    	
-    	fullRequestList = stringBuilder.toString();
+//    	StringBuilder stringBuilder = new StringBuilder();
+//    	String fullRequestList;
+//    	String fullAttributesList = "";
+//    	Map m = request.getParameterMap();
+//    	Iterator itr = m.keySet().iterator();
+//    	while (itr.hasNext()) {
+//    		  System.out.println(itr.next().toString());
+//    		  stringBuilder.append(itr.next().toString());
+//    		}
+//
+//    	Enumeration n = request.getAttributeNames();
+//    	while (n.hasMoreElements()){
+//    		System.out.println(n.nextElement());
+//    	}
+//    	
+//    	fullRequestList = stringBuilder.toString();
     	String oauth_code = request.getParameter("code");
     	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...
             log.info(LogManager.getHeader(context, "no_oauth_code",
-                    "type=no-oauth-code-globus-redirect --- " + fullRequestList + fullAttributesList + " --- "));
+                    "type=no-oauth-code-globus-redirect"));
             String globusRedirect = ConfigurationManager
                     .getProperty("authentication-oauth", "oa.globusredirect");
             String globusLogin = ConfigurationManager

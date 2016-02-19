@@ -322,7 +322,7 @@ public class OAuthAuthentication implements AuthenticationMethod
 		GlobusProvider provider = OAuthAuthentication.getGlobusOAuthURL(request);
 		System.out.println("Get user's OAuth credential...");
 		OAuthCredential credential = new OAuthCredential(null, null, oauth_code, provider.getType());
-		//System.out.println("CREDENTIAL" + credential);
+		System.out.println("CREDENTIAL" + credential);
 		
 		UserProfile userProfile = new UserProfile();
 		String email = null;
