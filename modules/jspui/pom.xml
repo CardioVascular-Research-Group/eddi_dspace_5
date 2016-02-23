@@ -136,7 +136,9 @@
          <dependency>
 			<groupId>org.eurekaclinical</groupId>
 			<artifactId>scribe-up-ext</artifactId>
-			<version>1.0-Alpha-2</version>
+			<version>1.0-Alpha-5</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/scribe-up-ext-1.0-Alpha-5-SNAPSHOT.jar</systemPath>
          </dependency>
 
          
