@@ -30,11 +30,6 @@ import org.dspace.eperson.EPerson;
 import org.dspace.authenticate.AuthenticationMethod;
 import org.dspace.authenticate.OAuthAuthentication;
 
-import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
-import org.eurekaclinical.scribeupext.provider.GlobusProvider;
-import org.scribe.up.credential.OAuthCredential;
-import org.scribe.up.profile.UserProfile;
-import org.scribe.model.Token;
 
 /**
  * oAuth authentication servlet. This is an access point
@@ -58,24 +53,7 @@ public class OAuthServlet extends DSpaceServlet
             SQLException, AuthorizeException
     {
     	
-//    	StringBuilder stringBuilder = new StringBuilder();
-//    	String fullRequestList;
-//    	String fullAttributesList = "";
-//    	Map m = request.getParameterMap();
-//    	Iterator itr = m.keySet().iterator();
-//    	while (itr.hasNext()) {
-//    		  System.out.println(itr.next().toString());
-//    		  stringBuilder.append(itr.next().toString());
-//    		}
-//
-//    	Enumeration n = request.getAttributeNames();
-//    	while (n.hasMoreElements()){
-//    		System.out.println(n.nextElement());
-//    	}
-//    	
-//    	fullRequestList = stringBuilder.toString();
     	String oauth_code = request.getParameter("code");
-    	
     	if ((oauth_code == null) || (oauth_code.length() == 0))
         {
     		// if oauth_code = null, construct url and redirect to globus login page here...

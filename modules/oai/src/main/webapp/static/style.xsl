@@ -11,11 +11,11 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:oai="http://www.openarchives.org/OAI/2.0/"
 	xmlns:lyn="http://www.lyncode.com/fakeNamespace" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-	xmlns:oai_dc_ecg="http://www.cvrgrid.org/files/oai_dc_ecg/"
+	xmlns:oai_dc_eddi="http://www.cvrgrid.org/files/oai_dc_eddi/"
 	xmlns:dc="http://purl.org/dc/doc:elements/1.1/"
     xmlns:verb="http://informatik.hu-berlin.de/xmlverbatim"
     xmlns:oai_id="http://www.openarchives.org/OAI/2.0/oai-identifier"
-    exclude-result-prefixes="oai lyn oai_dc oai_dc_ecg dc verb oai_id">
+    exclude-result-prefixes="oai lyn oai_dc oai_dc_eddi dc verb oai_id">
 
 	<xsl:output method="html" doctype-public="-//W3C//DTD HTML 4.01//EN" doctype-system="http://www.w3.org/TR/html4/strict.dtd" />
 
@@ -73,7 +73,7 @@
                                         </xsl:if>
                                         <xsl:attribute name="href">
                                             <xsl:value-of
-                                                    select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_ecg')"></xsl:value-of>
+                                                    select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_eddi')"></xsl:value-of>
                                         </xsl:attribute>
                                         Records
                                     </a>
@@ -85,7 +85,7 @@
                                         </xsl:if>
                                         <xsl:attribute name="href">
                                             <xsl:value-of
-                                                    select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListIdentifiers&amp;metadataPrefix=oai_dc_ecg')"></xsl:value-of>
+                                                    select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListIdentifiers&amp;metadataPrefix=oai_dc_eddi')"></xsl:value-of>
                                         </xsl:attribute>
                                         Identifiers
                                     </a>
@@ -249,14 +249,14 @@
                         <a>
                             <xsl:attribute name="href">
                                 <xsl:value-of
-                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_ecg&amp;set=', oai:setSpec/text())" />
+                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_eddi&amp;set=', oai:setSpec/text())" />
                             </xsl:attribute>
                             Records
                         </a>
                         <a>
                             <xsl:attribute name="href">
                                 <xsl:value-of
-                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListIdentifiers&amp;metadataPrefix=oai_dc_ecg&amp;set=', oai:setSpec/text())" />
+                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListIdentifiers&amp;metadataPrefix=oai_dc_eddi&amp;set=', oai:setSpec/text())" />
                             </xsl:attribute>
                             Identifiers
                         </a>
@@ -314,7 +314,7 @@
                                         <a>
                                             <xsl:attribute name="href">
                                                 <xsl:value-of
-                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_ecg&amp;set=', text())" />
+                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_eddi&amp;set=', text())" />
                                             </xsl:attribute>
                                             <xsl:value-of select="text()" />
                                         </a>
@@ -378,7 +378,7 @@
                                         <a>
                                             <xsl:attribute name="href">
                                                 <xsl:value-of
-                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_ecg&amp;set=', text())" />
+                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_eddi&amp;set=', text())" />
                                             </xsl:attribute>
                                             <xsl:value-of select="text()" />
                                         </a>
@@ -426,7 +426,7 @@
                         <div class="col-lg-4">
                             <a class="btn btn-default pull-right">
                                 <xsl:attribute name="href">
-                                    <xsl:value-of select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=GetRecord&amp;metadataPrefix=oai_dc_ecg&amp;identifier=', oai:identifier/text())" />
+                                    <xsl:value-of select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=GetRecord&amp;metadataPrefix=oai_dc_eddi&amp;identifier=', oai:identifier/text())" />
                                 </xsl:attribute>
                                 View Details
                             </a>
@@ -455,7 +455,7 @@
                                         <a>
                                             <xsl:attribute name="href">
                                                 <xsl:value-of
-                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_ecg&amp;set=', text())" />
+                                                        select="concat(/oai:OAI-PMH/oai:request/text(), '?verb=ListRecords&amp;metadataPrefix=oai_dc_eddi&amp;set=', text())" />
                                             </xsl:attribute>
                                             <xsl:value-of select="text()" />
                                         </a>
