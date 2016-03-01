@@ -421,7 +421,7 @@
         <property name="indexFieldName" value="dataType"/>
         <property name="metadataFields">
             <list>
-                <value>dc.ecg.datatype</value>
+                <value>dc.eddi.datatype</value>
             </list>
         </property>
     </bean>
@@ -430,7 +430,7 @@
         <property name="indexFieldName" value="refDatasets"/>
         <property name="metadataFields">
             <list>
-                <value>dc.ecg.datasets</value>
+                <value>dc.eddi.datasets</value>
             </list>
         </property>
     </bean>

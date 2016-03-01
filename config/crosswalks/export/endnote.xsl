@@ -70,7 +70,7 @@
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='description']/doc:element[@name='abstract']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='description']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='description']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>AB  - </xsl:text>
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='description']/doc:element[@name='abstract']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
@@ -97,52 +97,52 @@
 			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='identifier']/doc:element[@name='pmid']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
 		
-		<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
+		<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>UR  - Referenced Datasets: http://hdl.handle.net/</xsl:text>
 			<xsl:value-of select="."></xsl:value-of>
 		</xsl:for-each>	
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessurl']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessurl']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>UR  - Data Access URL(s): </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessurl']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessurl']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>	
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='citationpub']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='citationpub']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>UR  - Data Use Citation: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='citationpub']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='citationpub']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>	
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piname']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piname']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>N1  - P.I. Name: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piname']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piname']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>		
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piemail']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piemail']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>N1  - P.I. Email: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piemail']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piemail']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>		
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piaffiliation']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piaffiliation']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>N1  - P.I. Affiliation: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piaffiliation']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piaffiliation']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>		
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='dataformat']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='dataformat']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>N1  - Data Format: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='dataformat']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='dataformat']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>	
 			
-		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessrestrictions']">
+		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessrestrictions']">
 			<xsl:value-of select="$newline"></xsl:value-of>
 			<xsl:text>N1  - Access Restrictions: </xsl:text>
-			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessrestrictions']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
+			<xsl:value-of select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessrestrictions']/doc:element/doc:field[@name='value']/text()"></xsl:value-of>
 		</xsl:if>
 			
 		<xsl:if test="doc:metadata/doc:element[@name='dc']/doc:element[@name='language']/doc:element[@name='iso']">

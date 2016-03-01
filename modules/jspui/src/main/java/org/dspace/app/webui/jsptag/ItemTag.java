@@ -623,7 +623,7 @@ public class ItemTag extends TagSupport
 
                                 	}else if (foundUrn.contains("globus"))
                                 	{
-                                		Metadatum[] globusEpPath = item.getMetadata("dc", "ecg", "globusendpointpath", Item.ANY);
+                                		Metadatum[] globusEpPath = item.getMetadata("dc", "eddi", "globusendpointpath", Item.ANY);
                                 		if (globusEpPath != null){
                             				for (int k = 0; k < globusEpPath.length; k++)
                             				{                                    		

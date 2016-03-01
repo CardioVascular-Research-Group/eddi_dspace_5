@@ -150,72 +150,72 @@
 			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='source']/doc:element/doc:element/doc:field[@name='value']">
 				<dc:source><xsl:value-of select="." /></dc:source>
 			</xsl:for-each>
-			<!-- dc.ecg.* -->
-<!-- 			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element/doc:element/doc:field[@name='value']">
-				<dc:ecg><xsl:value-of select="." /></dc:ecg>
+			<!-- dc.eddi.* -->
+<!-- 			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element/doc:element/doc:field[@name='value']">
+				<dc:eddi><xsl:value-of select="." /></dc:eddi>
 			</xsl:for-each> -->
-			<!-- dc.ecg.description -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='description']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.description -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='description']/doc:element/doc:field[@name='value']">
 				<dc:eddi_description><xsl:value-of select="." /></dc:eddi_description>
 			</xsl:for-each>
-			<!-- dc.ecg.accessurl -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessurl']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.accessurl -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessurl']/doc:element/doc:field[@name='value']">
 				<dc:eddi_accessurl><xsl:value-of select="." /></dc:eddi_accessurl>
 			</xsl:for-each>
-			<!-- dc.ecg.accessrestrictions -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='accessrestrictions']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.accessrestrictions -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='accessrestrictions']/doc:element/doc:field[@name='value']">
 				<dc:eddi_accessrestrictions><xsl:value-of select="." /></dc:eddi_accessrestrictions>
 			</xsl:for-each>
-			<!-- dc.ecg.datatype -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='datatype']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.datatype -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='datatype']/doc:element/doc:field[@name='value']">
 				<dc:eddi_datatype><xsl:value-of select="." /></dc:eddi_datatype>
 			</xsl:for-each>
-			<!-- dc.ecg.dataformat -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='dataformat']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.dataformat -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='dataformat']/doc:element/doc:field[@name='value']">
 				<dc:eddi_dataformat><xsl:value-of select="." /></dc:eddi_dataformat>
 			</xsl:for-each>
-			<!-- dc.ecg.pubmedsearch -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='pubmedsearch']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.pubmedsearch -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='pubmedsearch']/doc:element/doc:field[@name='value']">
 				<dc:eddi_pubmedsearch><xsl:value-of select="." /></dc:eddi_pubmedsearch>
 			</xsl:for-each>
-			<!-- dc.ecg.dataaccessurl -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='dataaccessurl']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.dataaccessurl -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='dataaccessurl']/doc:element/doc:field[@name='value']">
 				<dc:eddi_dataaccessurl><xsl:value-of select="." /></dc:eddi_dataaccessurl>
 			</xsl:for-each>
-			<!-- dc.ecg.piname -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piname']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.piname -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piname']/doc:element/doc:field[@name='value']">
 				<dc:eddi_piname><xsl:value-of select="." /></dc:eddi_piname>
 			</xsl:for-each>
-			<!-- dc.ecg.piemail -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piemail']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.piemail -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piemail']/doc:element/doc:field[@name='value']">
 				<dc:eddi_piemail><xsl:value-of select="." /></dc:eddi_piemail>
 			</xsl:for-each>
-			<!-- dc.ecg.piaffiliation -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='piaffiliation']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.piaffiliation -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='piaffiliation']/doc:element/doc:field[@name='value']">
 				<dc:eddi_piaffiliation><xsl:value-of select="." /></dc:eddi_piaffiliation>
 			</xsl:for-each>
-			<!-- dc.ecg.granttitle -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='granttitle']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.granttitle -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='granttitle']/doc:element/doc:field[@name='value']">
 				<dc:eddi_granttitle><xsl:value-of select="." /></dc:eddi_granttitle>
 			</xsl:for-each>
-			<!-- dc.ecg.grantnumber -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='grantnumber']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.grantnumber -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='grantnumber']/doc:element/doc:field[@name='value']">
 				<dc:eddi_grantnumber><xsl:value-of select="." /></dc:eddi_grantnumber>
 			</xsl:for-each>
-			<!-- dc.ecg.citationpub -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='citationpub']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.citationpub -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='citationpub']/doc:element/doc:field[@name='value']">
 				<dc:eddi_citationpub><xsl:value-of select="." /></dc:eddi_citationpub>
 			</xsl:for-each>
-			<!-- dc.ecg.datasets -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.datasets -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='datasets']/doc:element/doc:field[@name='value']">
 				<dc:eddi_datasets><xsl:value-of select="." /></dc:eddi_datasets>
 			</xsl:for-each>
-			<!-- dc.ecg.globusendpointname -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='globusendpointname']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.globusendpointname -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='globusendpointname']/doc:element/doc:field[@name='value']">
 				<dc:eddi_globusendpointname><xsl:value-of select="." /></dc:eddi_globusendpointname>
 			</xsl:for-each>
-			<!-- dc.ecg.globusendpointpath -->
-			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='ecg']/doc:element[@name='globusendpointpath']/doc:element/doc:field[@name='value']">
+			<!-- dc.eddi.globusendpointpath -->
+			<xsl:for-each select="doc:metadata/doc:element[@name='dc']/doc:element[@name='eddi']/doc:element[@name='globusendpointpath']/doc:element/doc:field[@name='value']">
 				<dc:eddi_globusendpointpath><xsl:value-of select="." /></dc:eddi_globusendpointpath>
 			</xsl:for-each>
 		</oai_dc_eddi:dc>

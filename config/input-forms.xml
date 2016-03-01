@@ -215,7 +215,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>datasets</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Datasets</label>
@@ -299,7 +299,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
      
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>description</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Description</label>
@@ -310,7 +310,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piname</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Name</label>
@@ -321,7 +321,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piemail</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Email Address</label>
@@ -332,7 +332,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piaffiliation</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Affiliation</label>
@@ -354,7 +354,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>granttitle</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Grant Title</label>
@@ -365,7 +365,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>grantnumber</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Grant Number</label>
@@ -376,7 +376,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>citationpub</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Data Use Citation</label>
@@ -387,7 +387,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>accessurl</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Data Access URL(s)</label>
@@ -398,7 +398,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>globusendpointname</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Globus Shared Endpoint Name</label>
@@ -409,7 +409,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>globusendpointpath</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Globus Shared Endpoint Path</label>
@@ -421,7 +421,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>accessrestrictions</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Access Restrictions</label>
@@ -432,7 +432,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>dataformat</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Data Format</label>
@@ -484,7 +484,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
      
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>description</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Description</label>
@@ -495,7 +495,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piname</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Name</label>
@@ -506,7 +506,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piemail</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Email Address</label>
@@ -517,7 +517,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>piaffiliation</dc-qualifier>
          <repeatable>false</repeatable>
          <label>P.I. Affiliation</label>
@@ -539,7 +539,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>granttitle</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Grant Title</label>
@@ -550,7 +550,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>grantnumber</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Grant Number</label>
@@ -561,7 +561,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
          <dc-schema>dc</dc-schema>
-         <dc-element>ecg</dc-element>
+         <dc-element>eddi</dc-element>
          <dc-qualifier>citationpub</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Data Use Citation</label>
@@ -572,7 +572,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>accessurl</dc-qualifier>
          <repeatable>true</repeatable>
          <label>Data Access URL(s)</label>
@@ -583,7 +583,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>globusendpointname</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Globus Shared Endpoint Name</label>
@@ -594,7 +594,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>globusendpointpath</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Globus Shared Endpoint Path</label>
@@ -606,7 +606,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>accessrestrictions</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Access Restrictions</label>
@@ -617,7 +617,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
 
        <field>
 		    <dc-schema>dc</dc-schema>
-		    <dc-element>ecg</dc-element>
+		    <dc-element>eddi</dc-element>
 		    <dc-qualifier>dataformat</dc-qualifier>
          <repeatable>false</repeatable>
          <label>Data Format</label>

@@ -27,98 +27,98 @@
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>description</qualifier>
     <scope_note>The description of the item being added to the collection</scope_note>
   </dc-type>
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>accessurl</qualifier>
     <scope_note>The hyperlink to the original information the item references</scope_note>
   </dc-type>
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>accessrestrictions</qualifier>
     <scope_note>The level of access required to see the underlying data</scope_note>
   </dc-type>
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>datatype</qualifier>
     <scope_note>The purpose of the underlying data (e.g., Retrospective, Representational, etc.)</scope_note>
   </dc-type>
   
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>dataformat</qualifier>
     <scope_note>The file format(s) used for the underlying data</scope_note>
   </dc-type>
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>pubmedsearch</qualifier>
     <scope_note>Reference to research that has already used the underlying data</scope_note>
   </dc-type>
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>dataaccessurl</qualifier>
     <scope_note>Hyperlinks to individual/groups of data</scope_note>
   </dc-type> 
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>piname</qualifier>
     <scope_note>Name of Principal Investigator for research and primary contact</scope_note>
   </dc-type>  
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>piemail</qualifier>
     <scope_note>Email of Principal Investigator for research</scope_note>
   </dc-type>  
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>piaffiliation</qualifier>
     <scope_note>University, Organization, and/or department P.I. is affiliated with</scope_note>
   </dc-type>  
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>granttitle</qualifier>
     <scope_note>Title of grant supporting research (if applicable)</scope_note>
   </dc-type>  
 
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>grantnumber</qualifier>
     <scope_note>Number of grant supporting research (if applicable)</scope_note>
   </dc-type> 
   
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>citationpub</qualifier>
     <scope_note>Url for publication to cite when using this dataset</scope_note>
   </dc-type> 
    
   <dc-type>
     <schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>datasets</qualifier>
     <scope_note>Data Discovery Index URI for any datasets utilized by this publication</scope_note>
   </dc-type>  
@@ -152,14 +152,14 @@
 
   <dc-type>
 	<schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>globusendpointname</qualifier>
     <scope_note>Globus Shared Endpoint Name.</scope_note>
   </dc-type>
 
   <dc-type>
 	<schema>dc</schema>
-    <element>ecg</element>
+    <element>eddi</element>
     <qualifier>globusendpointpath</qualifier>
     <scope_note>Globus Shared Endpoint Path.</scope_note>
   </dc-type>
